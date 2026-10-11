@@ -3086,7 +3086,6 @@ window.DISC_PAGES = {
             '<div class="jp-share-preview" id="jp-share-preview">Preparando la imagen…</div>' +
             '<div class="jp-share-actions">' +
               '<button type="button" class="jp-share-main" id="jp-share-go" disabled>Compartir</button>' +
-              '<button type="button" class="jp-share-sec" id="jp-share-dl" disabled>Descargar imagen</button>' +
               '<button type="button" class="jp-share-sec" id="jp-share-copy">Copiar enlace</button>' +
             '</div>' +
             '<p class="jp-share-hint">También puedes mantener pulsada la imagen para guardarla.</p>' +
@@ -3099,7 +3098,6 @@ window.DISC_PAGES = {
 
       var preview = overlay.querySelector('#jp-share-preview');
       var goBtn = overlay.querySelector('#jp-share-go');
-      var dlBtn = overlay.querySelector('#jp-share-dl');
       var copyBtn = overlay.querySelector('#jp-share-copy');
       var closeBtn = overlay.querySelector('#jp-share-close');
       var blob = null, objUrl = null, closed = false;
@@ -3131,7 +3129,6 @@ window.DISC_PAGES = {
         im.alt = 'Imagen para compartir Japa-Móvil';
         preview.appendChild(im);
         goBtn.disabled = false;
-        dlBtn.disabled = false;
       });
 
       goBtn.addEventListener('click', function () {
@@ -3149,16 +3146,6 @@ window.DISC_PAGES = {
         } else {
           window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank', 'noopener');
         }
-      });
-
-      dlBtn.addEventListener('click', function () {
-        if (!objUrl) return;
-        var a = document.createElement('a');
-        a.href = objUrl;
-        a.download = 'Japa-Movil.jpg';
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
       });
 
       copyBtn.addEventListener('click', function () {
