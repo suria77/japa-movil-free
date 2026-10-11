@@ -588,6 +588,8 @@ window.DISC_PAGES = {
     background: rgba(255, 255, 255, 0.2);
     outline: none;
     cursor: pointer;
+    touch-action: pan-x;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .jp-volume-slider::-webkit-slider-thumb {
@@ -2483,6 +2485,35 @@ window.DISC_PAGES = {
     return (m < 10 ? "0" + m : m) + ":" + (s < 10 ? "0" + s : s);
   }
 
+  /* Volumen: iOS ignora audio.volume, así que se usa un GainNode (Web Audio) cuando se puede. */
+  var jpAC = null;
+  function jpBindVolume(audio, slider) {
+    var gain = null;
+    function apply() {
+      var v = parseFloat(slider.value);
+      if (isNaN(v)) v = 1;
+      try { audio.volume = v; } catch (e) {}
+      if (gain) gain.gain.value = v;
+    }
+    function ensureGain() {
+      if (gain) return;
+      try {
+        var AC = window.AudioContext || window.webkitAudioContext;
+        if (!AC) return;
+        if (!jpAC) jpAC = new AC();
+        if (jpAC.state === 'suspended') jpAC.resume();
+        var src = jpAC.createMediaElementSource(audio);
+        gain = jpAC.createGain();
+        src.connect(gain); gain.connect(jpAC.destination);
+        apply();
+      } catch (e) { gain = null; }
+    }
+    audio.addEventListener('play', ensureGain);
+    slider.addEventListener('input', apply);
+    slider.addEventListener('change', apply);
+    apply();
+  }
+
   var taanpuraAudio = new Audio() /* base bloqueada en la gratuita; en Premium: audio1/taanpura1.mp3 */;
   var btnTaanpuraPlay = document.getElementById('jp-taanpura-play');
   var btnTaanpuraPause = document.getElementById('jp-taanpura-pause');
@@ -2490,8 +2521,7 @@ window.DISC_PAGES = {
   var taanpuraControlsRow = document.getElementById('jp-taanpura-controls');
   var taanpuraTimeText = document.getElementById('jp-taanpura-time');
   var taanpuraVol = document.getElementById('jp-taanpura-vol');
-  taanpuraAudio.volume = taanpuraVol.value;
-  taanpuraVol.addEventListener('input', function() { taanpuraAudio.volume = this.value; });
+  jpBindVolume(taanpuraAudio, taanpuraVol);
   btnTaanpuraPlay.addEventListener('click', function() {
     taanpuraAudio.play();
     btnTaanpuraPlay.classList.add('jp-hidden');
@@ -2529,8 +2559,7 @@ window.DISC_PAGES = {
   var pazControlsRow = document.getElementById('jp-paz-controls');
   var pazTimeText = document.getElementById('jp-paz-time');
   var pazVol = document.getElementById('jp-paz-vol');
-  pazAudio.volume = pazVol.value;
-  pazVol.addEventListener('input', function() { pazAudio.volume = this.value; });
+  jpBindVolume(pazAudio, pazVol);
   btnPazPlay.addEventListener('click', function() {
     pazAudio.play();
     btnPazPlay.classList.add('jp-hidden');
@@ -2568,8 +2597,7 @@ window.DISC_PAGES = {
   var cosmosControlsRow = document.getElementById('jp-cosmos-controls');
   var cosmosTimeText = document.getElementById('jp-cosmos-time');
   var cosmosVol = document.getElementById('jp-cosmos-vol');
-  cosmosAudio.volume = cosmosVol.value;
-  cosmosVol.addEventListener('input', function() { cosmosAudio.volume = this.value; });
+  jpBindVolume(cosmosAudio, cosmosVol);
   btnCosmosPlay.addEventListener('click', function() {
     cosmosAudio.play();
     btnCosmosPlay.classList.add('jp-hidden');
@@ -2727,12 +2755,16 @@ window.DISC_PAGES = {
   document.querySelectorAll('#dharma-japa-root .jp-dropdown-menu').forEach(function(menu) {
     var lastY = 0, lastT = 0, vel = 0, moved = false, raf = null;
     function stopInertia() { if (raf) { cancelAnimationFrame(raf); raf = null; } }
+    var onSlider = false;
     menu.addEventListener('touchstart', function(e) {
+      onSlider = !!(e.target && e.target.closest && e.target.closest('input[type="range"], .jp-volume-wrap'));
+      if (onSlider) return;
       if (e.touches.length !== 1) return;
       stopInertia();
       lastY = e.touches[0].clientY; lastT = Date.now(); vel = 0; moved = false;
     }, { passive: true });
     menu.addEventListener('touchmove', function(e) {
+      if (onSlider) return;
       if (e.touches.length !== 1) return;
       if (menu.scrollHeight <= menu.clientHeight + 1) { e.preventDefault(); return; }
       e.preventDefault();
@@ -2744,6 +2776,7 @@ window.DISC_PAGES = {
       lastY = y; lastT = now; moved = true;
     }, { passive: false });
     menu.addEventListener('touchend', function() {
+      if (onSlider) { onSlider = false; return; }
       if (!moved || Math.abs(vel) < 0.05) return;
       var v = vel * 16, prev = null;
       function step(ts) {
