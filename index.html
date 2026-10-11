@@ -1439,6 +1439,8 @@ window.DISC_PAGES = {
     box-shadow: 0 6px 18px rgba(107, 33, 168, 0.35);
   }
 
+  button.jp-help-pdf { width: 100%; border: 0; cursor: pointer; font-family: inherit; }
+
   .jp-help-btn:focus-visible,
   .jp-help-card:focus-visible,
   .jp-help-seg button:focus-visible,
@@ -3613,6 +3615,29 @@ window.DISC_PAGES = {
   })();
 
   /* Guía de instalación de la versión gratuita (a partir del PDF de instalación freemium) */
+  /* Descargar un PDF sin salir de la app: se baja como archivo y se abre la hoja de compartir/guardar
+     (iPhone y iPad: "Guardar en Archivos"); si no se puede, se descarga directamente. Nunca se abre a pantalla completa. */
+  function jpSavePdf(url, btn) {
+    var name = url.split('/').pop();
+    var old = btn ? btn.textContent : '';
+    if (btn) { btn.disabled = true; btn.textContent = '…'; }
+    function done() { if (btn) { btn.disabled = false; btn.textContent = old; } }
+    function plainDownload(href) {
+      var a = document.createElement('a');
+      a.href = href; a.download = name; a.style.display = 'none';
+      document.body.appendChild(a); a.click(); a.remove();
+    }
+    fetch(url).then(function (r) { if (!r.ok) throw new Error('http'); return r.blob(); }).then(function (blob) {
+      var file = null;
+      try { file = new File([blob], name, { type: 'application/pdf' }); } catch (e) {}
+      if (file && navigator.canShare && navigator.canShare({ files: [file] })) {
+        return navigator.share({ files: [file], title: name }).catch(function () {});
+      }
+      var u = URL.createObjectURL(blob);
+      plainDownload(u);
+      setTimeout(function () { URL.revokeObjectURL(u); }, 60000);
+    }).catch(function () { plainDownload(url); }).then(done, done);
+  }
   var INSTALL_PDF_URL = 'pdf/Instalacion-Japa-Movil-Lite.pdf';
   var INSTALL_GUIDE = {
     ios: {
@@ -3683,7 +3708,7 @@ window.DISC_PAGES = {
           '</div>' +
           (data.note ? '<p class="jp-help-note">' + data.note + '</p>' : '') +
           '<div class="jp-help-steps">' + stepsHtml + '</div>' +
-          '<a class="jp-help-pdf" href="' + INSTALL_PDF_URL + '" target="_blank" rel="noopener">Descargar el PDF completo</a>';
+          '<button type="button" class="jp-help-pdf" data-pdf="' + INSTALL_PDF_URL + '">Descargar el PDF completo</button>';
         body.scrollTop = 0;
       }
       function closeInstall() {
@@ -3693,7 +3718,9 @@ window.DISC_PAGES = {
       }
       function onKey(e) { if (e.key === 'Escape') closeInstall(); }
       body.addEventListener('click', function (e) {
-        var osBtn = e.target.closest('[data-os]');
+        var pdfBtn = e.target.closest('[data-pdf]');
+      if (pdfBtn) { jpSavePdf(pdfBtn.getAttribute('data-pdf'), pdfBtn); return; }
+      var osBtn = e.target.closest('[data-os]');
         if (osBtn) showInstall(osBtn.getAttribute('data-os'));
       });
       overlay.querySelector('#jp-install-close').addEventListener('click', closeInstall);
