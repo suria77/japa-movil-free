@@ -28,7 +28,10 @@
       needNet: 'Necesitas conexión a Internet para descargar.',
       quota: 'No hay espacio suficiente en el móvil para guardar todo.',
       note: 'Los vídeos de fondo y el vídeo tutorial siguen necesitando conexión. Si puedes, descarga con Wi-Fi: son unos {mb} MB.',
-      allSaved: 'Todo está guardado en este móvil.'
+      allSaved: 'Todo está guardado en este móvil.',
+      lastStep: 'Último paso: úsala sin conexión',
+      lastStepText: 'Cuando la tengas instalada, ábrela con conexión y guarda los audios y las imágenes en tu móvil. Así funcionará aunque falle la red.',
+      lastStepBtn: 'Usar sin conexión'
     },
     en: {
       offlineBanner: 'You are offline. The app keeps working.',
@@ -47,7 +50,10 @@
       needNet: 'You need an Internet connection to download.',
       quota: 'There is not enough space on your phone to save everything.',
       note: 'Background videos and the tutorial video still need a connection. If you can, download on Wi-Fi: it is about {mb} MB.',
-      allSaved: 'Everything is saved on this phone.'
+      allSaved: 'Everything is saved on this phone.',
+      lastStep: 'Last step: use it offline',
+      lastStepText: 'Once it is installed, open it with a connection and save the audio and images on your phone. It will keep working even if the network fails.',
+      lastStepBtn: 'Use offline'
     }
   }[LANG];
 
@@ -73,6 +79,10 @@
     '.jp-help-card-offline{color:#0F3D2E;background:radial-gradient(circle at 90% 0%,rgba(255,255,255,.7) 0%,transparent 55%),' +
     'linear-gradient(135deg,#C9EFD9 0%,#9FDDBB 100%);border:2px solid #fff;box-shadow:0 10px 26px rgba(20,120,80,.26)}' +
     '.jp-help-card-offline .jp-help-card-icon{background:rgba(255,255,255,.8);border:2px solid #fff}' +
+    '.jp-off-note-card{margin:0 0 20px;padding:16px 18px;border-radius:18px;background:#E8F8EF;border:2px solid #9FDDBB;color:#0F3D2E}' +
+    '.jp-off-note-card b{display:block;margin-bottom:6px;font-size:19px;line-height:1.25}' +
+    '.jp-off-note-card p{margin:0 0 12px;font-size:17px;line-height:1.45}' +
+    '.jp-off-note-card .jp-off-btn{min-height:54px;font-size:18px}' +
     '.jp-off-list{margin:0 0 20px;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}' +
     '.jp-off-list li{display:flex;justify-content:space-between;gap:12px;padding:14px 16px;border-radius:16px;background:#fff;' +
     'border:2px solid #CDB6EA;font-size:17px;line-height:1.3;color:#2B1050}' +
@@ -245,6 +255,20 @@
     cards.appendChild(b);
   }
 
+  /* Aviso en la pantalla "Instalar la app": después de instalar, usar sin conexión */
+  function addInstallNote() {
+    var body = document.getElementById('jp-help-body');
+    if (!body || body.querySelector('.jp-off-note-card')) return;
+    var seg = body.querySelector('.jp-help-seg');       /* solo la pantalla de instalación lo tiene */
+    var steps = body.querySelector('.jp-help-steps');
+    if (!seg || !steps) return;
+    var d = document.createElement('div');
+    d.className = 'jp-off-note-card';
+    d.innerHTML = '<b>' + T.lastStep + '</b><p>' + T.lastStepText + '</p>' +
+      '<button type="button" class="jp-off-btn jp-off-card-link">' + T.lastStepBtn + '</button>';
+    steps.parentNode.insertBefore(d, steps);
+  }
+
   var viewEl = null;
   function pct() { return job && job.total ? Math.min(100, Math.round(100 * job.done / job.total)) : 0; }
 
@@ -315,7 +339,7 @@
   document.addEventListener('click', function (e) {
     var t = e.target;
     if (!t || !t.closest) return;
-    if (t.closest('.jp-off-card')) { e.preventDefault(); openView(); return; }
+    if (t.closest('.jp-off-card') || t.closest('.jp-off-card-link')) { e.preventDefault(); openView(); return; }
     var act = t.closest('[data-off-act]');
     if (!act) return;
     var a = act.getAttribute('data-off-act');
@@ -323,7 +347,7 @@
     else if (a === 'stop' && job) { job.stop = true; }
   });
 
-  var mo = new MutationObserver(function () { addCard(); });
+  var mo = new MutationObserver(function () { addCard(); addInstallNote(); });
   function init() {
     mountPill();
     if (!navigator.onLine) onNet();
