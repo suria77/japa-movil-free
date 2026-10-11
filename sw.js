@@ -1,16 +1,26 @@
 /* Service Worker — la app se abre aunque la red falle o esté bloqueada.
-   - La página principal y los recursos se guardan en el móvil y se sirven desde ahí al instante;
-     se actualizan en segundo plano cuando hay conexión.
-   - Los audios (mp3) se guardan al reproducirlos por primera vez, para poder oírlos sin conexión.
+   - La página principal, las tipografías y las imágenes de la interfaz se guardan en el móvil
+     y se sirven desde ahí al instante; se actualizan en segundo plano cuando hay conexión.
+   - Los audios y las imágenes de malas se guardan al usarlos, o todos de golpe con el botón
+     "Usar sin conexión" (ver offline.js).
    - /api/* (licencia) y los vídeos nunca se guardan.
-   Para forzar que todos los móviles descarguen todo de nuevo, sube el número de VERSION. */
-var VERSION = 'v1';
-var SHELL = 'jp-shell-' + VERSION;      /* página, imágenes, tipografías, etc. */
-var MEDIA = 'jp-media-' + VERSION;      /* audios reproducidos */
-var MAX_AUDIO_BYTES = 40 * 1024 * 1024;
+   La lista de archivos sale de offline-files.js (lo genera tools/make-offline-list.py).
+   Para forzar que todos los móviles descarguen la interfaz de nuevo, sube VERSION en offline-files.js. */
+try { importScripts('offline-files.js'); } catch (e) {}
+var CFG = self.JP_OFFLINE || {};
+var CN = CFG.caches || { shell: 'jp-shell-v2', media: 'jp-media-v1', assets: 'jp-assets-v1' };
+var SHELL = CN.shell;     /* página, interfaz, tipografías (se renueva con VERSION) */
+var MEDIA = CN.media;     /* audios (permanente, no se borra al actualizar) */
+var ASSETS = CN.assets;   /* imágenes de malas y demás (permanente) */
+var MAX_AUDIO_BYTES = 60 * 1024 * 1024;
 var SCOPE_URL = self.registration.scope; /* p. ej. https://japa.dharmaeterno.com/ */
 
-var PRECACHE = [SCOPE_URL, SCOPE_URL + 'manifest.webmanifest', SCOPE_URL + 'img/icon.png'];
+var PRECACHE = [SCOPE_URL, SCOPE_URL + 'manifest.webmanifest', SCOPE_URL + 'img/icon.png',
+                SCOPE_URL + 'offline.js', SCOPE_URL + 'offline-files.js'];
+
+/* Rutas (relativas) que van a la caché permanente de imágenes */
+var ASSET_SET = {};
+(CFG.images || []).forEach(function (p) { ASSET_SET[new URL(p, SCOPE_URL).href] = 1; });
 
 self.addEventListener('install', function (e) {
   e.waitUntil(
@@ -29,9 +39,8 @@ self.addEventListener('activate', function (e) {
   e.waitUntil(
     caches.keys().then(function (keys) {
       return Promise.all(keys.map(function (k) {
-        if ((k.indexOf('jp-shell-') === 0 && k !== SHELL) || (k.indexOf('jp-media-') === 0 && k !== MEDIA)) {
-          return caches.delete(k);
-        }
+        /* Solo se borran las versiones antiguas de la interfaz; audios e imágenes se conservan */
+        if (k.indexOf('jp-shell-') === 0 && k !== SHELL) return caches.delete(k);
       }));
     }).then(function () { return self.clients.claim(); })
   );
@@ -68,7 +77,7 @@ var pendingAudio = {};
 function cacheAudioInBackground(url) {
   if (pendingAudio[url]) return;
   pendingAudio[url] = true;
-  fetch(url).then(function (r) {
+  fetch(url, { headers: { 'x-jp-dl': '1' } }).then(function (r) {
     var len = parseInt(r.headers.get('content-length') || '0', 10);
     if (!r.ok || r.status !== 200 || (len && len > MAX_AUDIO_BYTES)) return;
     return caches.open(MEDIA).then(function (c) { return c.put(url, r); });
@@ -77,7 +86,8 @@ function cacheAudioInBackground(url) {
 
 function audioResponse(event) {
   var request = event.request;
-  return caches.open(MEDIA).then(function (c) { return c.match(request.url); }).then(function (hit) {
+  /* Se busca en todas las cachés: así sirve también los audios descargados con el botón */
+  return caches.match(request.url).then(function (hit) {
     if (hit) return rangeFromCache(request, hit);
     cacheAudioInBackground(request.url);
     return fetch(request);
@@ -86,18 +96,20 @@ function audioResponse(event) {
 
 /* Caché primero, y se refresca en segundo plano */
 function staleWhileRevalidate(event, cacheKey) {
-  return caches.open(SHELL).then(function (c) {
-    return c.match(cacheKey).then(function (hit) {
-      var update = fetch(cacheKey === SCOPE_URL ? SCOPE_URL : event.request).then(function (r) {
-        if (r && r.ok && r.status === 200 && !r.redirected) c.put(cacheKey, r.clone());
-        return r;
-      });
-      if (hit) {
-        event.waitUntil(update.catch(function () {}));
-        return hit;
+  var target = ASSET_SET[cacheKey] ? ASSETS : SHELL;
+  return caches.match(cacheKey).then(function (hit) {
+    var update = fetch(cacheKey === SCOPE_URL ? SCOPE_URL : event.request).then(function (r) {
+      if (r && r.ok && r.status === 200 && !r.redirected) {
+        var copy = r.clone();
+        caches.open(target).then(function (c) { c.put(cacheKey, copy); });
       }
-      return update;
+      return r;
     });
+    if (hit) {
+      event.waitUntil(update.catch(function () {}));
+      return hit;
+    }
+    return update;
   });
 }
 
@@ -108,6 +120,7 @@ self.addEventListener('fetch', function (event) {
   if (url.origin !== self.location.origin) return;
   if (url.pathname.indexOf('/api/') === 0) return;
   if (url.href.indexOf(SCOPE_URL) !== 0) return;
+  if (req.headers.has('x-jp-dl')) return;         /* descargas del botón "Usar sin conexión": las gestiona la página */
   if (isVideo(url)) return;                       /* los vídeos van siempre por red */
 
   if (isAudio(url)) { event.respondWith(audioResponse(event)); return; }
