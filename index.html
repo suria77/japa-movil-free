@@ -4293,5 +4293,13 @@ window.DISC_PAGES = {
   initJapaApp();
 })();
 </script>
+<script>
+/* Permite abrir la app sin conexión o si la red está bloqueada (ver sw.js) */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    try { navigator.serviceWorker.register('sw.js').catch(function () {}); } catch (e) {}
+  });
+}
+</script>
 </body>
 </html>
