@@ -1803,6 +1803,224 @@ window.DISC_PAGES = {
     cursor: pointer;
     text-decoration: underline;
   }
+/* JP-MAN:CSS:START */
+  /* ============ Iniciación a los mantras / Introduction to Mantras ============ */
+  .jp-help-card-mantra {
+    color: #4A1630;
+    background:
+      radial-gradient(circle at 90% 0%, rgba(255, 255, 255, 0.7) 0%, transparent 55%),
+      linear-gradient(135deg, #FFE2C6 0%, #F9C6D8 100%);
+    border: 2px solid #FFFFFF;
+    box-shadow: 0 10px 26px rgba(190, 80, 110, 0.26);
+  }
+  .jp-help-card-mantra .jp-help-card-icon {
+    background: rgba(255, 255, 255, 0.82);
+    border: 2px solid #FFFFFF;
+  }
+
+  .jp-man { color: #2B1050; font-family: 'Karla', 'Helvetica Neue', Arial, sans-serif; animation: jp-man-in 0.28s ease-out both; }
+  .jp-man * { box-sizing: border-box; }
+  @keyframes jp-man-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+  /* --- Portada --- */
+  .jp-man-hero {
+    position: relative;
+    overflow: hidden;
+    margin: 0 0 26px;
+    padding: 26px 20px 28px;
+    border-radius: 26px;
+    text-align: center;
+    background:
+      radial-gradient(circle at 50% 0%, #FFF1C9 0%, rgba(255, 241, 201, 0) 64%),
+      linear-gradient(165deg, #FFFAEC 0%, #F7E9FF 100%);
+    border: 2px solid #E9C86A;
+    box-shadow: 0 12px 30px rgba(176, 120, 20, 0.22), inset 0 1px 0 #FFFFFF;
+  }
+  .jp-man-mandala { display: block; width: 150px; height: 150px; margin: 0 auto 6px; }
+  .jp-man-hero h2 { margin: 0 0 8px; font-size: 30px; line-height: 1.12; font-weight: 800; letter-spacing: -0.01em; color: #2B1050; }
+  .jp-man-hero-sub { margin: 0 auto 14px; max-width: 34ch; font-size: 19px; line-height: 1.45; color: #3B1A6B; }
+  .jp-man-pill {
+    display: inline-block; margin: 0 0 18px; padding: 7px 16px; border-radius: 999px;
+    background: #FFFFFF; border: 2px solid #E9C86A; color: #6B4400; font-size: 15.5px; font-weight: 800; letter-spacing: 0.03em;
+  }
+  .jp-man-source { margin: 16px 0 0; font-size: 14.5px; line-height: 1.4; color: #5F4682; }
+
+  .jp-man-btn {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    width: 100%; min-height: 58px; padding: 14px 22px;
+    border: 0; border-radius: 999px; cursor: pointer;
+    font-family: inherit; font-size: 19px; font-weight: 800; line-height: 1.1;
+    color: #FFFFFF;
+    background: linear-gradient(135deg, #6B21A8 0%, #4C1D95 100%);
+    box-shadow: 0 8px 20px rgba(76, 29, 149, 0.34);
+    -webkit-appearance: none; appearance: none;
+    transition: transform 0.15s ease;
+  }
+  .jp-man-btn:active { transform: scale(0.98); }
+  .jp-man-btn-ghost {
+    color: #4C1D95; background: #FFFFFF; border: 2px solid #C4A5E8; box-shadow: none;
+  }
+  .jp-man-btn-gold {
+    color: #3A2500; background: linear-gradient(135deg, #FBE8B5 0%, #F3CF73 100%);
+    box-shadow: 0 8px 20px rgba(176, 120, 20, 0.3);
+  }
+  .jp-man-hero .jp-man-btn + .jp-man-btn { margin-top: 12px; }
+
+  /* --- Índice --- */
+  .jp-man-stage {
+    margin: 22px 4px 10px; font-size: 14.5px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: #8A5A00;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .jp-man-stage::after { content: ''; flex: 1 1 auto; height: 2px; border-radius: 2px; background: linear-gradient(90deg, #E9C86A, rgba(233, 200, 106, 0)); }
+  .jp-man-row {
+    display: flex; align-items: center; gap: 14px; width: 100%; margin: 0 0 10px; padding: 13px 14px;
+    border: 2px solid #E4D3F5; border-radius: 18px; background: #FFFFFF; color: #2B1050;
+    font-family: inherit; text-align: left; cursor: pointer;
+    box-shadow: 0 4px 12px rgba(107, 33, 168, 0.08);
+    -webkit-appearance: none; appearance: none;
+    transition: transform 0.15s ease, border-color 0.15s ease;
+  }
+  .jp-man-row:active { transform: scale(0.985); }
+  .jp-man-num {
+    flex: 0 0 auto; width: 44px; height: 44px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 19px; font-weight: 800; color: #5A3A00;
+    background: linear-gradient(135deg, #FBE8B5, #F3CF73);
+    border: 2px solid #FFFFFF; box-shadow: 0 0 0 2px #E9C86A;
+  }
+  .jp-man-row.jp-man-seen { border-color: #CDB6EA; }
+  .jp-man-row.jp-man-seen .jp-man-num { color: #FFFFFF; background: linear-gradient(135deg, #6B21A8, #86198F); box-shadow: 0 0 0 2px #C4A5E8; }
+  .jp-man-row-t { flex: 1 1 auto; min-width: 0; font-size: 18.5px; font-weight: 700; line-height: 1.25; }
+  .jp-man-go { flex: 0 0 auto; font-size: 30px; line-height: 1; color: #8B5CC8; }
+
+  /* --- Lección --- */
+  .jp-man-prog { margin: 0 0 20px; }
+  .jp-man-prog-label { margin: 0 0 8px; font-size: 15px; font-weight: 800; letter-spacing: 0.05em; color: #6B4E8A; }
+  .jp-man-bar { height: 10px; border-radius: 999px; background: #E4D3F5; overflow: hidden; }
+  .jp-man-bar > i { display: block; height: 100%; border-radius: 999px; background: linear-gradient(90deg, #F3CF73, #C084FC 60%, #6B21A8); transition: width 0.3s ease; }
+
+  .jp-man-kicker { margin: 0 0 6px; font-size: 14.5px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #8A5A00; }
+  .jp-man-title { margin: 0 0 14px; font-size: 30px; line-height: 1.12; font-weight: 800; letter-spacing: -0.01em; color: #2B1050; outline: none; }
+  .jp-man-orn { display: block; width: 160px; height: 18px; margin: 0 0 16px; }
+  .jp-man-lead {
+    margin: 0 0 22px; padding: 16px 18px; border-radius: 18px;
+    font-size: 19.5px; line-height: 1.5; font-weight: 600; color: #3B1A6B;
+    background: linear-gradient(135deg, #FFF8E4 0%, #F7ECFF 100%);
+    border: 2px solid #EFD9A1; border-left: 7px solid #E0B040;
+  }
+
+  .jp-man-p { margin: 0 0 18px; font-size: 18px; line-height: 1.65; color: #2B1050; }
+  .jp-man b { font-weight: 800; }
+  .jp-man-h3 { margin: 26px 0 12px; font-size: 20.5px; line-height: 1.25; font-weight: 800; color: #4C1D95; }
+
+  .jp-man-list { list-style: none; margin: 0 0 20px; padding: 0; }
+  .jp-man-list li { position: relative; margin: 0 0 12px; padding: 0 0 0 34px; font-size: 18px; line-height: 1.6; }
+  .jp-man-list li::before {
+    content: ''; position: absolute; left: 4px; top: 0.42em; width: 16px; height: 16px; border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #FFF6D8 0%, #F3CF73 55%, #D9A93A 100%);
+    box-shadow: 0 0 0 3px rgba(233, 200, 106, 0.35);
+  }
+
+  .jp-man-cards { display: flex; flex-direction: column; gap: 14px; margin: 0 0 22px; }
+  .jp-man-card {
+    display: flex; gap: 14px; align-items: flex-start; padding: 16px 16px 16px 14px;
+    border-radius: 20px; border: 2px solid #F0D79A; background: #FFF8E4; color: #2B1050;
+    box-shadow: 0 6px 16px rgba(176, 120, 20, 0.12);
+  }
+  .jp-man-card h4 { margin: 0 0 5px; font-size: 20.5px; line-height: 1.2; font-weight: 800; color: #6B4400; }
+  .jp-man-card p { margin: 0; font-size: 17.5px; line-height: 1.55; }
+  .jp-man-badge {
+    flex: 0 0 auto; width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 18px; font-weight: 800; color: #5A3A00; background: linear-gradient(135deg, #FBE8B5, #F3CF73); border: 2px solid #FFFFFF; box-shadow: 0 0 0 2px #E9C86A;
+  }
+  .jp-man-card-body { min-width: 0; }
+  .jp-man-card-violet { background: #F4ECFE; border-color: #D5BDF0; box-shadow: 0 6px 16px rgba(107, 33, 168, 0.12); }
+  .jp-man-card-violet h4 { color: #4C1D95; }
+  .jp-man-card-violet .jp-man-badge { color: #FFFFFF; background: linear-gradient(135deg, #6B21A8, #86198F); box-shadow: 0 0 0 2px #C4A5E8; }
+  .jp-man-card-rose { background: #FFEEF4; border-color: #F5C2D3; box-shadow: 0 6px 16px rgba(190, 80, 110, 0.14); }
+  .jp-man-card-rose h4 { color: #8C1D4A; }
+  .jp-man-card-sattva { background: #FFFDEE; border-color: #F3DB72; box-shadow: 0 6px 16px rgba(200, 160, 20, 0.16); }
+  .jp-man-card-sattva h4 { color: #7A5A00; }
+  .jp-man-card-rajas { background: #FFF0E1; border-color: #F5C28F; box-shadow: 0 6px 16px rgba(200, 110, 20, 0.14); }
+  .jp-man-card-rajas h4 { color: #9A4A00; }
+  .jp-man-card-tamas { background: #EAE6F2; border-color: #B7ADCB; box-shadow: 0 6px 16px rgba(60, 50, 90, 0.14); }
+  .jp-man-card-tamas h4 { color: #332B52; }
+
+  .jp-man-quote {
+    position: relative; margin: 6px 0 24px; padding: 26px 20px 18px 22px; border-radius: 20px;
+    background: linear-gradient(135deg, #F4ECFE 0%, #FFF8E4 100%); border: 2px solid #DCC8F3;
+  }
+  .jp-man-quote::before { content: '\201C'; position: absolute; left: 14px; top: -2px; font-size: 64px; line-height: 1; font-family: Georgia, 'Times New Roman', serif; color: #D9A93A; }
+  .jp-man-quote p { margin: 0 0 8px; padding-top: 12px; font-size: 19.5px; line-height: 1.5; font-style: italic; font-weight: 600; color: #2B1050; }
+  .jp-man-quote cite { display: block; font-size: 16.5px; font-style: normal; font-weight: 800; color: #6B21A8; }
+
+  .jp-man-callout { margin: 4px 0 22px; padding: 16px 18px; border-radius: 18px; background: #FFF7DD; border: 2px solid #E9C86A; color: #3A2A00; }
+  .jp-man-callout h3 { margin: 0 0 6px; font-size: 20px; line-height: 1.25; font-weight: 800; color: #6B4400; }
+  .jp-man-callout p { margin: 0; font-size: 18px; line-height: 1.6; }
+  .jp-man-callout-violet { background: #F4ECFE; border-color: #C4A5E8; color: #2B1050; }
+  .jp-man-callout-violet h3 { color: #4C1D95; }
+
+  .jp-man-steps { list-style: none; counter-reset: jpman; margin: 0 0 22px; padding: 0; }
+  .jp-man-steps li { counter-increment: jpman; position: relative; margin: 0 0 12px; padding: 4px 0 0 52px; min-height: 40px; font-size: 18px; line-height: 1.6; }
+  .jp-man-steps li::before {
+    content: counter(jpman); position: absolute; left: 0; top: 0; width: 38px; height: 38px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 800; color: #FFFFFF;
+    background: linear-gradient(135deg, #6B21A8, #86198F); box-shadow: 0 0 0 3px #E4D3F5;
+  }
+
+  .jp-man-app {
+    margin: 0 0 22px; padding: 14px 16px 16px; border-radius: 18px; background: #EAF2FF; border: 2px solid #B5D0F4; color: #12365F;
+  }
+  .jp-man-app-tag {
+    display: inline-flex; align-items: center; gap: 6px; margin: 0 0 6px; font-size: 13.5px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: #1E4E8C;
+  }
+  .jp-man-app p { margin: 0; font-size: 17.5px; line-height: 1.55; }
+
+  .jp-man-chips { display: flex; flex-wrap: wrap; gap: 9px; margin: 0 0 20px; padding: 0; list-style: none; }
+  .jp-man-chips li {
+    padding: 9px 15px; border-radius: 16px; background: #FFFFFF; border: 2px solid #D9C3F2; color: #3B1A6B;
+    font-size: 17px; line-height: 1.35; font-weight: 600;
+  }
+
+  .jp-man-check { list-style: none; margin: 0 0 18px; padding: 0; }
+  .jp-man-check li { margin: 0 0 10px; }
+  .jp-man-chk {
+    display: flex; gap: 14px; align-items: flex-start; width: 100%; padding: 13px 14px; text-align: left;
+    border: 2px solid #E4D3F5; border-radius: 16px; background: #FFFFFF; color: #2B1050;
+    font-family: inherit; font-size: 17.5px; line-height: 1.5; cursor: pointer;
+    -webkit-appearance: none; appearance: none;
+    transition: background 0.15s ease, border-color 0.15s ease;
+  }
+  .jp-man-chk-box {
+    flex: 0 0 auto; width: 28px; height: 28px; margin-top: 1px; border-radius: 9px; border: 2.5px solid #B58BE0; background: #FFFFFF;
+    display: flex; align-items: center; justify-content: center; color: transparent; font-size: 19px; font-weight: 800; line-height: 1;
+  }
+  .jp-man-chk[aria-checked="true"] { background: #F4ECFE; border-color: #B58BE0; }
+  .jp-man-chk[aria-checked="true"] .jp-man-chk-box { background: #6B21A8; border-color: #6B21A8; color: #FFFFFF; }
+
+  .jp-man-nav { display: flex; gap: 12px; margin: 30px 0 14px; }
+  .jp-man-nav .jp-man-btn { flex: 1 1 0; width: auto; font-size: 18px; padding: 14px 12px; }
+  .jp-man-link {
+    display: block; width: 100%; margin: 0; padding: 12px; border: 0; background: none; cursor: pointer;
+    font-family: inherit; font-size: 17px; font-weight: 700; color: #6B21A8; text-decoration: underline; text-underline-offset: 3px;
+  }
+
+  .jp-man-done { text-align: center; }
+  .jp-man-done .jp-man-btn { margin-top: 12px; }
+
+  .jp-man-btn:focus-visible, .jp-man-row:focus-visible, .jp-man-chk:focus-visible, .jp-man-link:focus-visible {
+    outline: 3px solid #F3CF73; outline-offset: 3px;
+  }
+
+  @media (max-width: 480px) {
+    .jp-man-hero h2, .jp-man-title { font-size: 27px; }
+    .jp-man-mandala { width: 128px; height: 128px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .jp-man { animation: none; }
+    .jp-man-bar > i, .jp-man-btn, .jp-man-row, .jp-man-chk { transition: none; }
+  }
+/* JP-MAN:CSS:END */
 </style>
 <script>
 (function () {
@@ -3614,6 +3832,196 @@ window.DISC_PAGES = {
     actions.insertBefore(a, actions.firstChild);
   })();
 
+  /* JP-MAN:JS:START */
+  /* ============ Iniciación a los mantras / Introduction to Mantras (tutorial) ============ */
+  var JP_MAN_DATA = {"es":{"ui":{"title":"Iniciación a los mantras","heroSub":"Un camino sencillo para empezar a recitar con sentido y desde el corazón.","meta":"11 lecciones breves","source":"Basado en el libro «Mantra Yoga: el poder de la palabra», de Suria Pombo","start":"Empezar","continue":"Continuar donde lo dejé","again":"Empezar desde el principio","lessonOf":"Lección {n} de {t}","prev":"Anterior","next":"Siguiente","index":"Ver índice","indexTitle":"Las lecciones","inApp":"En la app","key":"Ideas clave","doneTitle":"Ya tienes la base","doneText":"Elige un mantra que te hable al corazón, fija tu intención y empieza con una ronda de 108 cada día. La práctica constante lo hace todo.","practice":"Cerrar y practicar","review":"Repasar las lecciones","back":"Volver","seen":"Leída","aria":"Iniciación a los mantras"},"stages":["Fundamentos","La estructura del mantra","El camino de la práctica","Frutos y consejos"],"lessons":[{"stage":0,"title":"¿Qué son los mantras?","lead":"Un mantra es un sonido sagrado que se repite con atención e intención. Más que palabras, son vibraciones que ordenan la mente.","blocks":[{"t":"p","x":"La palabra viene de <b>man</b> («mente», de <i>manas</i>) y el sufijo <b>tra</b>. Hay dos lecturas: «instrumento de la mente» —un vehículo para lograr algo mediante la repetición de una vibración— y, la más extendida, «<b>protección de la mente</b>»: de nuestras tendencias erróneas, de nuestra comprensión limitada y de las energías negativas."},{"t":"p","x":"Cada mantra lleva en su estructura unas características concretas. Algunos dan calor y otros enfrían; unos energizan y otros calman. No es algo aleatorio: cada sonido del alfabeto sánscrito tiene su propia vibración."},{"t":"points","h":"Tres factores hacen que un mantra funcione","items":["<b>El sonido:</b> la vibración exacta de cada sílaba. Por eso importa pronunciarla bien.","<b>Prāṇa:</b> la energía, la fuerza interna con la que lo recitas.","<b>Manas:</b> la intención y la dirección de tu mente. Cuanta más fuerza pongas ahí, antes se manifiestan sus cualidades."]},{"t":"quote","x":"Al igual que el āsana es la llave de la flexibilidad corporal, el uso correcto de los mantras es la llave de la flexibilidad mental.","by":"David Frawley"},{"t":"p","x":"Y lo mejor: es una práctica fácil y agradable para cualquier persona. Por eso muchos sabios la consideran una de las mejores <i>sādhanas</i> (prácticas espirituales) de nuestra época."}]},{"stage":0,"title":"Tipos de mantras","lead":"Los mantras pueden acompañar cualquier aspecto de la vida. La tradición los ordena según los cuatro objetivos de la existencia, los <i>purushartha</i>, a los que suma uno de sanación.","blocks":[{"t":"cards","items":[{"h":"Dharma","x":"Tu propósito y vocación en esta vida; el sentido ético y moral. Es la base sobre la que se asienta todo lo demás.","k":"gold"},{"h":"Ārtha","x":"Seguridad y apoyo en tu camino: recursos, prosperidad, amistades.","k":"gold"},{"h":"Kāma","x":"Deseos y placeres de la vida. Útil con moderación; si se persigue sin conciencia, puede volverse vacío.","k":"gold"},{"h":"Mokṣa","x":"El más elevado: el desarrollo espiritual y la liberación del alma, el reencuentro con la Unidad que sostiene todas las cosas.","k":"violet"},{"h":"Arogya","x":"Salud y bienestar del cuerpo y de la mente. El ayurveda y la medicina tibetana tienen toda una rama de sanación con mantras.","k":"rose"}]},{"t":"callout","h":"La intención lo cambia todo (samkalpa)","x":"Dentro de cualquiera de estos campos, lo decisivo es la motivación profunda con la que recitas. Puede envolver tu práctica en una vibración armoniosa o cargarla de karma denso. Lo que siembras, lo recoges."},{"t":"app","x":"«Elige mantra» te muestra la explicación de cada mantra y su pronunciación. Léela antes de empezar: saber para qué sirve da fuerza a tu intención."}]},{"stage":0,"title":"Las tres gunas","lead":"Las gunas («lo que ata») son tres cualidades de la Naturaleza, presentes en lo que nos rodea y en nosotros. Explican la calidad de nuestras elecciones y también la de nuestra práctica.","blocks":[{"t":"cards","items":[{"h":"Sattva · luz y equilibrio","x":"Inteligencia, virtud, pureza y conciencia. Lo que está alineado con el anhelo profundo del alma. Trae felicidad, paz y amor incondicional.","k":"sattva"},{"h":"Rajas · movimiento y deseo","x":"Energía, pasión y desarmonía. Los deseos innecesarios del ego y el apego a los sentidos. Su búsqueda incansable conduce al sufrimiento.","k":"rajas"},{"h":"Tamas · inercia y sombra","x":"Pesadez, ignorancia y letargo. La conciencia en su mayor sopor, sin luz.","k":"tamas"}]},{"t":"p","x":"La calidad de tu práctica depende de la <b>pureza de tu intención</b>. Un mantra elevado recitado para ser admirado o para sacar provecho pierde su cualidad sáttvica y se vuelve rajásico. El ego siempre intenta torcer las mejores intenciones en su beneficio, así que conviene vigilarlo con humildad."},{"t":"callout","h":"La regla de oro","x":"Busca siempre la conexión, la intención y el estado sáttvico. Es el camino seguro hacia la plenitud interior."},{"t":"p","x":"Dos matices importantes. Pedir comodidad o salud está muy bien cuando se hace desde la humildad y la aceptación. Y tampoco te apegues a sattva: presumir de «ser sáttvico» te aleja de él. Un sattva puro es comprensivo con rajas y tamas, porque son expresiones de la Naturaleza que solo se trascienden con amor."}]},{"stage":0,"title":"El sattva guna de los mantras","lead":"Cuando recitas, quien habla y quien escucha son el mismo. Recitar mantras es más una tarea de escucha que de habla.","blocks":[{"t":"p","x":"No eres un sujeto que usa un objeto (el mantra): <b>eres el instrumento</b>. Como la flauta, que no da la nota —la da el Músico a través de ella—, la vibración divina se manifiesta a través de tu mente y de tu cuerpo. Por eso el yapa no es un ejercicio de dicción, sino de escucha, de humildad y de entrega."},{"t":"points","h":"Cómo recitar con sattva","items":["<b>Pon bhāva</b> (emoción, sentimiento). Pronuncia el mantra como el nombre de quien hace latir tu corazón: no se dice igual el nombre del cartero.","<b>Dirígelo al chakra del corazón.</b> Su vibración te lleva más allá del discurso mental y del intelecto.","<b>Pon fe.</b> La convicción en su estado más alto, unida a la emoción, multiplica la capacidad del mantra.","<b>Escucha el silencio</b> que sostiene cada repetición."]},{"t":"quote","x":"Antes de hablar, es necesario que escuches, pues Dios habla en el silencio de tu corazón.","by":"Madre Teresa"},{"t":"points","h":"Cuida también tu palabra fuera de la práctica","items":["Di la verdad, aunque con suavidad.","Evita hablar innecesariamente: escoge la palabra justa y consciente.","No entres en críticas ni en conversaciones banales.","Une el habla a sentimientos positivos: amor, cariño, empatía y compasión."]}]},{"stage":1,"title":"Partes de los mantras","lead":"La tradición divide cada mantra en seis partes (<i>shandangas</i>). Si lo recitas conociéndolas, los resultados se multiplican.","blocks":[{"t":"cards","items":[{"h":"Ṛṣi","x":"El sabio que recibió y transmitió por primera vez el poder del mantra.","k":"gold","n":"1"},{"h":"Chanda","x":"La métrica del mantra, que marca su ritmo interno de recitación.","k":"gold","n":"2"},{"h":"Devata","x":"La divinidad que preside su esencia. Cantar «Om Ganeshāya namaha» es manifestar la energía de Ganesha: el mantra no es un camino hacia ese poder, sino su expresión sonora.","k":"gold","n":"3"},{"h":"Bīya","x":"La semilla que concentra el poder del mantra y le da su carácter: suave, fuerte…","k":"gold","n":"4"},{"h":"Shakti","x":"La energía vibratoria de sus sonidos, que nos pone en contacto con el Devata.","k":"gold","n":"5"},{"h":"Kīlaka","x":"La llave que abre el poder oculto del mantra, su Consciencia (Chaitanya). Se dice que hacen falta muchísimas repeticiones —unos 130 millones— y que depende del karma de cada uno.","k":"gold","n":"6"}]},{"t":"points","h":"Otros factores que conviene conocer","items":["<b>Kavacham:</b> el escudo frente a elementos sutiles que interfieren en la práctica.","<b>Samkalpa:</b> la intención. Sin ella la práctica pierde dirección y se dispersa. Fijada desde la mente da logros materiales y externos; desde el corazón, resultados internos y espirituales.","<b>Artham:</b> el significado del mantra. Comprenderlo da más fuerza a la fusión con el sonido; aunque, según Swami Sivananda, funciona también sin conocerlo (solo puede tardar más)."]},{"t":"callout","k":"violet","h":"¿Y si no tienes un maestro?","x":"Lo ideal es recibir el mantra de un guru con linaje: es como heredar los ahorros de tus padres en lugar de abrir una cuenta desde cero. Pero si no es posible, un mantra pronunciado con precisión y con una mente ferviente da sus frutos. Puedes hacerte tu propia iniciación (<i>mantra dīkṣā</i>):"},{"t":"steps","items":["Elige a un ser espiritualmente elevado con el que sientas una conexión profunda: Ramana Maharshi, Ramakrishna, Cristo, Buda… no importa la tradición.","Visualiza que te inicia, recitándote el mantra al oído.","Repítelo tres veces, internamente, con la mayor intensidad, desde el fondo de tu ser."]}]},{"stage":2,"title":"Kīrtana o kirtan","lead":"El camino de la devoción cantada.","blocks":[{"t":"p","x":"En el Bhagavad Gītā, Kṛishna habla de tres vías hacia la liberación del espíritu: la acción (<i>karma mārga</i>), el conocimiento (<i>jñāna mārga</i>) y la devoción (<i>bhakti mārga</i>). El kīrtana pertenece a esta última y es una de las nueve formas de adorar a lo Divino."},{"t":"points","h":"Qué es","items":["Un canto devocional en el que los mantras se repiten dentro de un marco melódico y grupal.","Suele seguir la estructura de <b>llamada y respuesta</b>: quien guía canta y el grupo responde. De ahí el nombre <i>sankirtana</i>, «actuación colectiva».","No se busca una buena actuación musical, sino la entrega del corazón y la comunión de las almas.","En la India lo acompañan el armonio, las tablas, la mrdanga y las karatalas (pequeños címbalos). Puede incluir danza y narraciones."]},{"t":"p","x":"Hoy tiene mucha presencia en los centros de yoga de Occidente. La música y la energía del grupo amplifican la devoción, y unir el texto sagrado al canto es algo natural en casi todas las tradiciones religiosas del mundo."},{"t":"app","x":"«Elige mantra» incluye el audio de su pronunciación: cántalo junto a él con el corazón abierto."}]},{"stage":2,"title":"Yapa","lead":"Yapa (también escrito japa) es recitar de forma repetida mantras, nombres divinos o pasajes sagrados. El verbo <i>yap</i> significa «decir algo en voz baja, murmurar».","blocks":[{"t":"quote","x":"Yapa es la piedra filosofal del elixir divino que le hace a uno semejante a Dios.","by":"Swami Sivananda"},{"t":"p","x":"Lo practican muchas tradiciones: la hinduista, la budista, la cristiana, la musulmana. Con la repetición llega un momento en que la mente se rinde y se detiene; después se aquieta también el prāṇa, y los sentidos se recogen."},{"t":"cards","h":"Cuatro maneras de repetir un mantra","items":[{"h":"1 · Vaikary Yapa (en voz alta)","x":"La mejor forma de empezar. Afina la pronunciación, ayuda a que la mente no divague y deja que el mantra se integre de fuera hacia dentro. Sus efectos se notan más en el plano externo y material.","k":"violet"},{"h":"2 · Upamsu Yapa (susurrado)","x":"Tan bajo que quien se sienta a tu lado no lo oiría. Crea una pantalla protectora frente a influencias ajenas y una relación más íntima con el mantra.","k":"violet"},{"h":"3 · Manasic Yapa (mental)","x":"Recitación en silencio, desde la «lengua sutil». Es la más profunda: el Agni-purāṇa dice que en voz baja es más eficaz que en voz alta, con los labios cien veces más y mentalmente mil veces más. Requiere algo de experiencia en meditación.","k":"violet"},{"h":"4 · Likhita Yapa (escrito)","x":"Repetir el mantra por escrito en un cuaderno, en un espacio sereno y con caligrafía cuidada: cada letra es como un latido que se lanza al Universo.","k":"violet"}]},{"t":"points","h":"Cuánto y durante cuánto tiempo","items":["Para contar se usa el mala: una ronda son <b>108 repeticiones</b>.","<b>Una ronda diaria</b> es la cantidad mínima para practicar con un mantra.","La tradición propone una sādhana de <b>40 días</b> (4.320 repeticiones con una ronda al día); si fallas un día, se empieza de nuevo. El 40 marca un tránsito en muchas tradiciones: es el tiempo para crear un hábito nuevo.","Un mantra cantado 108 veces con presencia queda situado, se dice, en los 108 chakras del cuerpo energético."]},{"t":"p","x":"El secreto lo resume el dicho taoísta: «Donde va la mente va la energía». Repetir es despertar poco a poco el poder que el mantra lleva dentro."},{"t":"app","x":"«Contar por voz» te acompaña en el yapa en voz alta. «Contar a mano» es ideal para el susurrado o el mental, porque no necesitas hacer ruido. En todos los modos la app cuenta rondas de 108."}]},{"stage":2,"title":"Nāma yapa","lead":"La repetición constante del Nombre de lo Divino, del Santo Nombre de cualquier religión. Para muchos, es la llave maestra hacia la liberación.","blocks":[{"t":"quote","x":"Hablar de Dios es lo único que vale la pena; todo lo demás no es sino vanidad y dolor.","by":"Anandamayi Ma"},{"t":"p","x":"La recitación del Nombre te pone en contacto directo con la presencia divina y es un refugio para el alma. Pero no se hace de forma mecánica: debe hacerse con <b>intensa devoción</b>. Es el camino de la entrega, en el que soltamos las riendas del ego y las ponemos en manos de la voluntad divina."},{"t":"points","h":"Cómo evoluciona la práctica","items":["Al principio puede ser solo un ejercicio de concentración: aferrarse a un único pensamiento.","Con la práctica, el Nombre se interioriza y crea un campo de resonancia en cada célula del cuerpo.","La vibración se eleva de forma continua y sin esfuerzo, y las tendencias inconscientes pierden fuerza.","La meta es llegar al estado que un maestro zen llamó <b>«mente vacía, corazón lleno»</b>."]},{"t":"quote","x":"Llámale Amado para más moverle e inclinarle a su ruego, porque cuando Dios es amado, con grande facilidad acude a las peticiones de su amante.","by":"San Juan de la Cruz"},{"t":"p","x":"Los textos hinduistas dan mucha importancia al <i>Nāma Smarana</i>, la recordación del Nombre a lo largo de toda la vida: lo que repetimos con intensidad hoy es lo que acude a nuestra mente en los momentos decisivos."}]},{"stage":2,"title":"Yapa mala","lead":"El mala («guirnalda») es un rosario cuyas cuentas vamos pasando a medida que repetimos el mantra. Es un aliado, no un adorno.","blocks":[{"t":"points","h":"Cómo es","items":["Lo más común: <b>108 cuentas</b> más el <b>meru</b> («montaña»), la cuenta que sobresale. El meru no se cuenta: marca el límite de las rondas.","También existen malas de 54 cuentas, el mismo número que los rosarios cristianos."]},{"t":"steps","h":"Cómo se usa","items":["Sostenlo con la <b>mano derecha</b>, apoyado en el dedo anular o en el medio.","Mueve las cuentas con el <b>pulgar</b>, símbolo de Dios. Nunca toques el mala con el índice: simboliza el ego y descargaría su energía.","Empieza en la cuenta contigua al meru y avanza hasta la que queda pegada a él por el otro lado: son 108, una ronda completa.","Para hacer más rondas no cruces el meru: <b>da la vuelta al mala</b> y sigue en sentido contrario. Así la mente no pierde la atención.","Acerca la mano al corazón y dirige cada cuenta hacia él, como sembrando el mantra en tu pecho."]},{"t":"p","x":"<b>¿Por qué 108?</b> Se dice que del chakra del corazón parten 108 nadis o canales de energía. Es también la proporción entre el Sol o la Luna y su distancia a la Tierra (108 diámetros), y el resultado de las 27 nakshatras por sus 4 padas."},{"t":"cards","h":"Tipos de malas","items":[{"h":"Rudraksha","x":"Para Gaṇapati, Shiva y las Diosas. Energía ígnea y cálida.","k":"gold"},{"h":"Tulasī","x":"Para Vishnu, Krishna y Dhanvantari. Estimula y abre mente y corazón. Blanca (Rama): práctica espiritual. Roja (Krishna): práctica material.","k":"gold"},{"h":"Sándalo","x":"Sādhana general. Suaviza y refresca mente y corazón. Blanco: espiritual. Rojo: material y con Diosas.","k":"gold"},{"h":"Loto","x":"Ideal para los mantras de Lakshmi.","k":"gold"},{"h":"Cúrcuma","x":"Para proteger la casa de energías negativas.","k":"gold"},{"h":"Gemas","x":"Para los mantras de los planetas: cada piedra se asocia a un planeta.","k":"gold"}]},{"t":"callout","h":"Trátalo con cuidado","x":"Es un objeto precioso: mirarlo es recordar tu compromiso con el camino. No lo uses para decorar ni para exhibir tu práctica. Lo mejor es guardarlo en un altar o en una bolsita especial, lejos de otras manos, porque el mala va absorbiendo la energía de tu práctica."},{"t":"app","x":"«Elige mala» reúne las malas de la app, cada una con su explicación. Con la que elijas, la app cuenta las cuentas y las rondas de 108 por ti."}]},{"stage":3,"title":"Beneficios del mantra yoga","lead":"Swami Sivananda, en su libro <i>Yapa Yoga</i>, enumera los frutos que la tradición atribuye a la repetición de mantras.","blocks":[{"t":"chips","h":"En la mente y el corazón","items":["Aumenta las cualidades sáttvicas","Purifica el corazón","Estabiliza la mente","Aporta paz suprema","Elimina los miedos"]},{"t":"chips","h":"En el ego y los apegos","items":["Destruye los seis enemigos: deseo, ira, codicia, arrogancia, apego y celos","Quema los samskaras (impresiones mentales)","Anula los apegos","Fomenta la renuncia al ego","Aplaca la pasión y desenraíza los deseos","Elimina el engaño ilusorio"]},{"t":"chips","h":"En la vida","items":["Aporta salud, riqueza, fuerza y una larga vida","Desarrolla Prema, el Amor Divino"]},{"t":"chips","h":"En lo espiritual","items":["Despierta la Kundalini","Nos trae la Consciencia Divina","Une al devoto con Dios","Otorga dicha eterna","Destruye el ciclo de nacimientos y muertes","Elimina los pecados"]}]},{"stage":3,"title":"Indicaciones para favorecer la práctica","lead":"Claves para recitar bien y hábitos de vida que ayudan a avanzar. Márcalas como tu lista de comprobación.","blocks":[{"t":"check","groups":[{"h":"Antes de empezar","items":["Elige un mantra con el que sientas una conexión especial, por la divinidad que lo preside o por intuición. Tras probar varios, suele surgir uno solo.","Trabaja con un mantra, o con muy pocos. La práctica es como cavar un pozo: cuanto más insistes en un solo lugar, más profundo llegas.","Aprende lo básico de la pronunciación. Cada sílaba con atención, a una velocidad ni muy lenta ni muy rápida.","Si no puedes recibir el mantra de un guru, haz tu iniciación visualizada (lección 5).","Crea ambiente: incienso, una vela, flores…"]},{"h":"Momento y lugar","items":["El momento ideal es el <b>Brahma Muhurta</b>: unos 96 minutos antes de la salida del sol, durante 48 minutos. También es bueno el atardecer.","Mira al <b>Este</b> (vitalidad y determinación) o al <b>Norte</b> (sabiduría y conocimiento). Si buscas beneficios materiales o practicas tras la puesta de sol, mira al Oeste.","Practica siempre en el mismo sitio, limpio y recogido. Los lugares de poder —templos, montañas, árboles, la naturaleza— potencian el sonido."]},{"h":"Durante la práctica","items":["Mantén la espalda erguida; la postura de loto es la ideal, pero lo esencial es la espalda recta.","Concentra la atención en el chakra del corazón o en el del tercer ojo, y devuelve la mente allí cada vez que divague.","Si notas que la atención se pierde, haz una secuencia de repeticiones rápidas, o pasa a voz alta si estabas en silencio.","Implica al corazón: fe, devoción y emoción.","Observa tus divagaciones con actitud científica y de autoconocimiento: así el yapa se convierte en <i>dhyāna</i>, en meditación.","Prueba todas las formas —voz alta, susurro, escrito— y camina poco a poco hacia la recitación interna, en silencio."]},{"h":"Después y en tu vida diaria","items":["No retomes bruscamente el mundo exterior: regálate unos momentos de transición consciente para que la energía impregne tu día.","Repite el mantra durante el día, aunque estés haciendo otras cosas.","Cuida tus pensamientos y tus palabras; prioriza el silencio y las conversaciones que edifican.","Lleva una vida moderada, cuidando la calidad de los alimentos.","Acompáñalo con alguna práctica física como yoga o chi kung.","Busca compañías en las que primen los sentimientos positivos.","Dedica parte de tu tiempo al karma yoga: acciones desinteresadas, ofrecidas a lo Divino ayudando a los demás."]}]}]}]},"en":{"ui":{"title":"Introduction to Mantras","heroSub":"A simple path to begin reciting with meaning and from the heart.","meta":"11 short lessons","source":"Based on the book “Mantra Yoga: The Power of the Word” by Suria Pombo","start":"Begin","continue":"Continue where I left off","again":"Start from the beginning","lessonOf":"Lesson {n} of {t}","prev":"Previous","next":"Next","index":"View contents","indexTitle":"The lessons","inApp":"In the app","key":"Key ideas","doneTitle":"You now have the foundation","doneText":"Choose a mantra that speaks to your heart, set your intention and begin with one round of 108 each day. Steady practice does the rest.","practice":"Close and practice","review":"Review the lessons","back":"Back","seen":"Read","aria":"Introduction to Mantras"},"stages":["Foundations","The anatomy of a mantra","The path of practice","Fruits and guidance"],"lessons":[{"stage":0,"title":"What are mantras?","lead":"A mantra is a sacred sound repeated with attention and intention. More than words, mantras are vibrations that bring order to the mind.","blocks":[{"t":"p","x":"The word comes from <b>man</b> (“mind”, from <i>manas</i>) and the suffix <b>tra</b>. There are two readings: “instrument of the mind” — a vehicle for reaching certain goals by repeating a vibration — and, the more widely held, “<b>protection of the mind</b>”: from our mistaken tendencies, our limited understanding and negative energies."},{"t":"p","x":"Every mantra carries specific qualities in its vibrational structure. Some produce heat and others cool; some energize and others calm. This is no accident: each sound of the Sanskrit alphabet has its own vibration."},{"t":"points","h":"Three factors make a mantra work","items":["<b>The sound:</b> the exact vibration of each syllable. That is why correct pronunciation matters.","<b>Prāṇa:</b> the energy, the inner strength with which you recite it.","<b>Manas:</b> the intention and direction of your mind. The more force you put there, the sooner its qualities manifest."]},{"t":"quote","x":"Just as āsana is the key to bodily flexibility, the correct use of mantras is the key to mental flexibility.","by":"David Frawley"},{"t":"p","x":"And the best part: it is an easy and pleasant practice for anyone. That is why many sages consider it one of the finest <i>sādhanas</i> (spiritual practices) for our times."}]},{"stage":0,"title":"Types of mantras","lead":"Mantras can accompany every aspect of life. The tradition arranges them by the four goals of human life, the <i>purusharthas</i>, plus one for healing.","blocks":[{"t":"cards","items":[{"h":"Dharma","x":"Your purpose and calling in this life; your ethical and moral compass. It is the ground on which everything else rests.","k":"gold"},{"h":"Ārtha","x":"Security and support along your path: resources, prosperity, friendships.","k":"gold"},{"h":"Kāma","x":"The desires and pleasures of life. Helpful in moderation; pursued without awareness, it can turn empty.","k":"gold"},{"h":"Mokṣa","x":"The highest: spiritual growth and the final liberation of the soul, the reunion with the Unity beneath all things.","k":"violet"},{"h":"Arogya","x":"Health and well-being of body and mind. Ayurveda and Tibetan medicine both have a whole branch of healing through mantras.","k":"rose"}]},{"t":"callout","h":"Intention changes everything (samkalpa)","x":"In any of these fields, what matters most is the deep motivation behind your recitation. It can wrap your practice in a harmonious vibration or load it with heavy karma. What you sow, you reap."},{"t":"app","x":"“Choose Mantra” shows each mantra’s explanation and its pronunciation. Read it before you begin: knowing what a mantra is for gives strength to your intention."}]},{"stage":0,"title":"The three gunas","lead":"The gunas (“that which binds”) are three qualities of Nature, present all around us and within us. They explain the quality of our choices — and of our practice.","blocks":[{"t":"cards","items":[{"h":"Sattva · light and balance","x":"Intelligence, virtue, purity and awareness. Whatever is aligned with the deep longing of the soul. It brings happiness, peace and unconditional love.","k":"sattva"},{"h":"Rajas · movement and desire","x":"Energy, passion and disharmony. The ego’s unnecessary desires and attachment to the senses. Chasing them endlessly leads to suffering.","k":"rajas"},{"h":"Tamas · inertia and shadow","x":"Heaviness, ignorance and lethargy. Awareness at its most dormant, without light.","k":"tamas"}]},{"t":"p","x":"The quality of your practice depends on the <b>purity of your intention</b>. A lofty mantra recited to be admired or to make a profit loses its sattvic quality and becomes rajasic. The ego always tries to twist our best intentions to its own advantage, so watch it with humility."},{"t":"callout","h":"The golden rule","x":"Always seek the sattvic connection, intention and state. It is the sure path to inner fulfilment."},{"t":"p","x":"Two important nuances. Asking for comfort or health is perfectly fine when it comes from humility and acceptance. And do not cling to sattva either: boasting of “being sattvic” takes you away from it. True sattva is understanding toward rajas and tamas, because they are expressions of Nature that can only be transcended through love."}]},{"stage":0,"title":"The sattva guna of mantras","lead":"When you recite, the one who speaks and the one who listens are the same. Reciting mantras is more an act of listening than of speaking.","blocks":[{"t":"p","x":"You are not a subject using an object (the mantra): <b>you are the instrument</b>. Like a flute, which does not give the note — the Musician plays it through the flute — the divine vibration manifests through your mind and body. That is why japa is not an exercise in diction, but one of listening, humility and surrender."},{"t":"points","h":"How to recite with sattva","items":["<b>Bring bhāva</b> (feeling, emotion). Say the mantra the way you say the name of someone who makes your heart beat faster — you don’t say it the way you’d say the postman’s name.","<b>Direct it to the heart chakra.</b> Its vibration carries you beyond mental chatter and the intellect.","<b>Bring faith.</b> Conviction at its highest, joined with emotion, multiplies the power of the mantra.","<b>Listen to the silence</b> that holds every repetition."]},{"t":"quote","x":"Before you speak, you must listen, for God speaks in the silence of your heart.","by":"Mother Teresa"},{"t":"points","h":"Watch your words outside practice, too","items":["Tell the truth, but gently.","Avoid unnecessary talk: choose the right, conscious word.","Stay out of criticism and idle chatter.","Join speech to positive feelings: love, affection, empathy and compassion."]}]},{"stage":1,"title":"Parts of a mantra","lead":"The tradition divides every mantra into six parts (<i>shadangas</i>). Recite it knowing them and the results multiply.","blocks":[{"t":"cards","items":[{"h":"Ṛṣi","x":"The sage who first received and transmitted the power of the mantra.","k":"gold","n":"1"},{"h":"Chanda","x":"The meter of the mantra, which sets its inner rhythm of recitation.","k":"gold","n":"2"},{"h":"Devata","x":"The deity who presides over its essence. Chanting “Om Ganeshāya namaha” manifests the energy of Ganesha: the mantra is not a road to that power but its sound expression.","k":"gold","n":"3"},{"h":"Bīja","x":"The seed that concentrates the mantra’s power and gives it its character: gentle, fiery…","k":"gold","n":"4"},{"h":"Shakti","x":"The vibrational energy of its sounds, which brings us into contact with the Devata.","k":"gold","n":"5"},{"h":"Kīlaka","x":"The key that unlocks the mantra’s hidden power, its Consciousness (Chaitanya). It is said to take an enormous number of repetitions — around 130 million — and to depend on each person’s karma.","k":"gold","n":"6"}]},{"t":"points","h":"Other factors worth knowing","items":["<b>Kavacham:</b> the shield against subtle disturbances that interfere with the practice.","<b>Samkalpa:</b> the intention. Without it, practice loses direction and scatters. Set from the mind, it brings material, external achievements; set from the heart, inner and spiritual results.","<b>Artham:</b> the meaning of the mantra. Understanding it strengthens your fusion with the sound — though, according to Swami Sivananda, it also works without knowing it (it may only take longer)."]},{"t":"callout","k":"violet","h":"What if you have no teacher?","x":"The ideal is to receive the mantra from a guru of a true lineage — like inheriting your parents’ savings instead of opening an account from zero. When that is not possible, a mantra pronounced accurately and with a fervent mind still bears fruit. You can make your own initiation (<i>mantra dīkṣā</i>):"},{"t":"steps","items":["Choose a spiritually elevated being you feel deeply connected to: Ramana Maharshi, Ramakrishna, Christ, the Buddha… the tradition does not matter.","Visualize them initiating you, whispering the mantra in your ear.","Repeat it three times, inwardly, with the greatest intensity, from the depth of your being."]}]},{"stage":2,"title":"Kīrtana (kirtan)","lead":"The path of devotion through song.","blocks":[{"t":"p","x":"In the Bhagavad Gītā, Kṛṣṇa speaks of three paths toward the liberation of the spirit: action (<i>karma mārga</i>), knowledge (<i>jñāna mārga</i>) and devotion (<i>bhakti mārga</i>). Kīrtana belongs to the last, and is one of the nine ways of worshipping the Divine."},{"t":"points","h":"What it is","items":["Devotional singing in which mantras are repeated within a melodic, group setting.","It often follows a <b>call-and-response</b> structure: the lead singer chants and the group answers. Hence the name <i>sankirtana</i>, “collective performance”.","The aim is not a fine musical performance but wholehearted surrender and a communion of souls.","In India it is accompanied by the harmonium, tabla, mridanga and karatalas (small hand cymbals). It can include dance and storytelling."]},{"t":"p","x":"Today it is widely present in yoga centres in the West. Music and group energy amplify devotion, and joining sacred text to song is a natural expression found in nearly every religious tradition."},{"t":"app","x":"“Choose Mantra” includes the audio of its pronunciation: sing along with it, heart open."}]},{"stage":2,"title":"Japa","lead":"Japa (also spelled yapa) is the repeated recitation of mantras, divine names or sacred passages. The verb <i>yap</i> means “to say something softly, to murmur”.","blocks":[{"t":"quote","x":"Japa is the philosopher’s stone of the divine elixir that makes one godlike.","by":"Swami Sivananda"},{"t":"p","x":"Many traditions practise it: Hindu, Buddhist, Christian, Muslim. With repetition there comes a moment when the mind surrenders and stills; then the prāṇa grows quiet too, and the senses withdraw."},{"t":"cards","h":"Four ways to repeat a mantra","items":[{"h":"1 · Vaikhari Japa (aloud)","x":"The best way to begin. It refines your pronunciation, keeps the mind from wandering and lets the mantra settle in from the outside in. Its effects show most on the external, material plane.","k":"violet"},{"h":"2 · Upamshu Japa (whispered)","x":"So softly that a person sitting beside you could not hear it. It forms a protective screen against outside influences and a more intimate bond with the mantra.","k":"violet"},{"h":"3 · Manasika Japa (mental)","x":"Silent recitation, with the “subtle tongue”. It is the deepest: the Agni Purāṇa says that a murmured mantra is more effective than one spoken aloud, one moved on the lips a hundred times more, and one recited mentally a thousand times more. It calls for some meditation experience.","k":"violet"},{"h":"4 · Likhita Japa (written)","x":"Writing the mantra again and again in a notebook, in a serene space and with careful handwriting: each letter is like a heartbeat sent out to the Universe.","k":"violet"}]},{"t":"points","h":"How much, and for how long","items":["A mala is used for counting: one round is <b>108 repetitions</b>.","<b>One round a day</b> is the minimum for working with a mantra.","The tradition proposes a <b>40-day</b> sādhana (4,320 repetitions at one round a day); if you miss a day, you begin again. Forty marks a threshold in many traditions: it is the time needed to form a new habit.","A mantra chanted 108 times with presence is said to settle in the 108 chakras of the energy body."]},{"t":"p","x":"The Taoist saying sums up the secret: “Where the mind goes, energy flows.” Repeating gently awakens the power the mantra holds within."},{"t":"app","x":"“Voice Count” keeps pace with you when reciting aloud. “Manual Count” is ideal for whispered or mental japa, since you don’t need to make a sound. In every mode, the app counts rounds of 108."}]},{"stage":2,"title":"Nama japa","lead":"The constant repetition of the Name of the Divine — the Holy Name of any religion. For many, it is the master key to liberation.","blocks":[{"t":"quote","x":"Speaking of God is the only thing worth doing; everything else is but vanity and pain.","by":"Anandamayi Ma"},{"t":"p","x":"Reciting the Name puts you in direct contact with the divine presence and is a refuge for the soul. But it must not be done mechanically: it calls for <b>intense devotion</b>. It is the path of surrender, where we let go of the ego’s reins and place them in the hands of the divine will."},{"t":"points","h":"How the practice unfolds","items":["At first it may be just an exercise in concentration: holding on to a single thought.","With practice, the Name is internalized and creates a field of resonance in every cell of the body.","The vibration rises continuously and effortlessly, and unconscious tendencies lose their grip.","The goal is the state a Zen master called <b>“empty mind, full heart”</b>."]},{"t":"quote","x":"Call Him Beloved, to move Him more and incline Him to your prayer; for when God is loved, He comes with great ease to the requests of His lover.","by":"St. John of the Cross"},{"t":"p","x":"The Hindu texts place great importance on <i>Nāma Smarana</i>, remembrance of the Name throughout one’s whole life: what we repeat with intensity today is what comes to mind in the decisive moments."}]},{"stage":2,"title":"Japa mala","lead":"The mala (“garland”) is a string of beads we move along as we repeat the mantra. It is an ally, not an ornament.","blocks":[{"t":"points","h":"What it looks like","items":["Most common: <b>108 beads</b> plus the <b>meru</b> (“mountain”), the bead that stands out. The meru is not counted: it marks the limit of each round.","Malas with 54 beads also exist — the same number as Christian rosaries."]},{"t":"steps","h":"How to use it","items":["Hold it in your <b>right hand</b>, resting on the ring or middle finger.","Move the beads with your <b>thumb</b>, the symbol of God. Never touch the mala with your index finger: it symbolizes the ego and would drain its energy.","Start at the bead next to the meru and advance to the one beside it on the other side: that is 108, one full round.","To do more rounds, do not cross the meru: <b>turn the mala around</b> and continue in the other direction. This keeps the mind from losing its attention.","Bring your hand close to your heart and direct each bead toward it, as if sowing the mantra in your chest."]},{"t":"p","x":"<b>Why 108?</b> It is said that 108 nadis, or energy channels, radiate from the heart chakra. It is also the ratio between the Sun or the Moon and their distance from the Earth (108 diameters), and the result of the 27 nakshatras times their 4 padas."},{"t":"cards","h":"Types of malas","items":[{"h":"Rudraksha","x":"For Gaṇapati, Shiva and the Goddesses. Fiery, warming energy.","k":"gold"},{"h":"Tulasī","x":"For Vishnu, Krishna and Dhanvantari. Stimulating; opens mind and heart. White (Rama): spiritual practice. Red (Krishna): material practice.","k":"gold"},{"h":"Sandalwood","x":"General sādhana. Softens and cools mind and heart. White: spiritual. Red: material, and with Goddesses.","k":"gold"},{"h":"Lotus","x":"Ideal for the mantras of Lakshmi.","k":"gold"},{"h":"Turmeric","x":"To protect the home from negative energies.","k":"gold"},{"h":"Gemstones","x":"For planetary mantras: each stone is associated with a planet.","k":"gold"}]},{"t":"callout","h":"Treat it with care","x":"It is a precious object: looking at it reminds you of your commitment to the path. Do not use it as decoration or to show off your practice. It is best kept on an altar or in a special pouch, away from other hands, because the mala absorbs the energy of your practice."},{"t":"app","x":"“Choose Mala” gathers the app’s malas, each with its own description. With the one you pick, the app counts the beads and rounds of 108 for you."}]},{"stage":3,"title":"Benefits of mantra yoga","lead":"In his book <i>Japa Yoga</i>, Swami Sivananda lists the fruits the tradition attributes to the repetition of mantras.","blocks":[{"t":"chips","h":"For the mind and heart","items":["Increases the sattvic qualities","Purifies the heart","Steadies the mind","Brings supreme peace","Removes fear"]},{"t":"chips","h":"For the ego and attachments","items":["Destroys the six enemies: desire, anger, greed, arrogance, attachment and jealousy","Burns the samskaras (mental impressions)","Dissolves attachments","Encourages renunciation of the ego","Calms passion and uproots desires","Removes the illusion of delusion"]},{"t":"chips","h":"For life","items":["Brings health, wealth, strength and long life","Develops Prema, Divine Love"]},{"t":"chips","h":"For the spirit","items":["Awakens the Kundalini","Brings Divine Consciousness","Unites the devotee with God","Grants eternal bliss","Ends the cycle of birth and death","Removes sins"]}]},{"stage":3,"title":"Guidance for your practice","lead":"Keys to reciting well and habits that help you move forward. Tick them off as your own checklist.","blocks":[{"t":"check","groups":[{"h":"Before you begin","items":["Choose a mantra you feel a special connection with, through the deity who presides over it or through intuition. After trying several, one usually stands out.","Work with one mantra, or very few. Practice is like digging a well: the more you persist in one place, the deeper you go.","Learn the basics of pronunciation. Every syllable with attention, at a pace neither too slow nor too fast.","If you cannot receive the mantra from a guru, make your visualized initiation (lesson 5).","Set the mood: incense, a candle, flowers…"]},{"h":"Time and place","items":["The ideal time is <b>Brahma Muhurta</b>: about 96 minutes before sunrise, lasting 48 minutes. Sunset is also a good time.","Face <b>East</b> (vitality and determination) or <b>North</b> (wisdom and knowledge). If you seek material benefits or practise after sunset, face West.","Practise in the same place, clean and quiet. Places of power — temples, mountains, trees, nature — strengthen the sound."]},{"h":"During practice","items":["Keep your back upright; the lotus posture is ideal, but what matters is a straight spine.","Rest your attention on the heart chakra or the third eye, and return the mind there each time it wanders.","If you notice your attention slipping, try a run of fast repetitions — or switch to aloud if you were silent.","Involve the heart: faith, devotion and emotion.","Observe your wandering thoughts with a scientific, self-knowing attitude: this is how japa turns into <i>dhyāna</i>, meditation.","Try every form — aloud, whispered, written — and move gradually toward silent, inner recitation."]},{"h":"Afterwards and in daily life","items":["Do not jump straight back into the outer world: give yourself a few moments of conscious transition so the energy can permeate your day.","Repeat the mantra throughout the day, even while doing other things.","Be careful with your thoughts and words; favour silence and uplifting conversation.","Live a moderate life, taking care over the quality of your food.","Pair it with a physical practice such as yoga or qigong.","Seek company in which positive feelings prevail.","Devote part of your time to karma yoga: selfless action, offered to the Divine by helping others."]}]}]}]}};
+  var JP_MAN = (function () {
+    var LANG = ((document.documentElement.getAttribute('lang') || 'es').slice(0, 2).toLowerCase() === 'en') ? 'en' : 'es';
+    var D = JP_MAN_DATA[LANG];
+    var U = D.ui;
+    var KEY = 'jp_man_seen_v1_' + LANG;
+    var N = D.lessons.length;
+    var body = null, backBtn = null, closeFn = null;
+    var cur = -1;          /* -1 = portada/índice, 0..N-1 = lección, N = final */
+    var active = false;
+
+    function getSeen() {
+      try {
+        var a = JSON.parse(localStorage.getItem(KEY) || '[]');
+        return Array.isArray(a) ? a : [];
+      } catch (e) { return []; }
+    }
+    function markSeen(i) {
+      var a = getSeen();
+      if (a.indexOf(i) < 0) {
+        a.push(i);
+        try { localStorage.setItem(KEY, JSON.stringify(a)); } catch (e) {}
+      }
+    }
+
+    function mandala() {
+      var s = '<svg class="jp-man-mandala" viewBox="0 0 200 200" aria-hidden="true">' +
+        '<defs><radialGradient id="jpman-g" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#FFF6D8"/><stop offset="1" stop-color="#F3CF73"/></radialGradient></defs>' +
+        '<circle cx="100" cy="100" r="95" fill="none" stroke="#E9C86A" stroke-width="2"/>' +
+        '<circle cx="100" cy="100" r="88" fill="none" stroke="#F0D79A" stroke-width="1" stroke-dasharray="2 5"/>';
+      var i;
+      for (i = 0; i < 12; i++) {
+        s += '<ellipse cx="100" cy="36" rx="11" ry="26" fill="#FBE9B0" stroke="#D9A93A" stroke-width="1.6" transform="rotate(' + (i * 30) + ' 100 100)"/>';
+      }
+      for (i = 0; i < 8; i++) {
+        s += '<ellipse cx="100" cy="60" rx="9" ry="19" fill="#EBDAFB" stroke="#8B5CC8" stroke-width="1.4" transform="rotate(' + (i * 45 + 22.5) + ' 100 100)"/>';
+      }
+      s += '<circle cx="100" cy="100" r="40" fill="url(#jpman-g)" stroke="#C99A2E" stroke-width="2.5"/>' +
+        '<text x="100" y="118" text-anchor="middle" font-size="50" fill="#5A2A8F" font-family="serif">ॐ</text></svg>';
+      return s;
+    }
+
+    var ORN = '<svg class="jp-man-orn" viewBox="0 0 160 18" aria-hidden="true">' +
+      '<line x1="0" y1="9" x2="62" y2="9" stroke="#E0B040" stroke-width="2" stroke-linecap="round"/>' +
+      '<path d="M80 1l8 8-8 8-8-8z" fill="#F3CF73" stroke="#C99A2E" stroke-width="1.5"/>' +
+      '<line x1="98" y1="9" x2="160" y2="9" stroke="#E0B040" stroke-width="2" stroke-linecap="round"/></svg>';
+
+    function render(b) {
+      var h = '';
+      switch (b.t) {
+        case 'p':
+          return '<p class="jp-man-p">' + b.x + '</p>';
+        case 'points':
+          return (b.h ? '<h3 class="jp-man-h3">' + b.h + '</h3>' : '') +
+            '<ul class="jp-man-list">' + b.items.map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ul>';
+        case 'cards':
+          h = b.h ? '<h3 class="jp-man-h3">' + b.h + '</h3>' : '';
+          return h + '<div class="jp-man-cards">' + b.items.map(function (c) {
+            return '<div class="jp-man-card jp-man-card-' + (c.k || 'gold') + '">' +
+              (c.n ? '<span class="jp-man-badge" aria-hidden="true">' + c.n + '</span>' : '') +
+              '<div class="jp-man-card-body"><h4>' + c.h + '</h4><p>' + c.x + '</p></div></div>';
+          }).join('') + '</div>';
+        case 'quote':
+          return '<blockquote class="jp-man-quote"><p>' + b.x + '</p><cite>— ' + b.by + '</cite></blockquote>';
+        case 'callout':
+          return '<div class="jp-man-callout' + (b.k ? ' jp-man-callout-' + b.k : '') + '"><h3>' + b.h + '</h3><p>' + b.x + '</p></div>';
+        case 'steps':
+          return (b.h ? '<h3 class="jp-man-h3">' + b.h + '</h3>' : '') +
+            '<ol class="jp-man-steps">' + b.items.map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ol>';
+        case 'app':
+          return '<div class="jp-man-app"><div class="jp-man-app-tag"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M11 18.5h2"/></svg>' + U.inApp + '</div><p>' + b.x + '</p></div>';
+        case 'chips':
+          return '<h3 class="jp-man-h3">' + b.h + '</h3><ul class="jp-man-chips">' + b.items.map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ul>';
+        case 'check':
+          return b.groups.map(function (g) {
+            return '<h3 class="jp-man-h3">' + g.h + '</h3><ul class="jp-man-check">' + g.items.map(function (x) {
+              return '<li><button type="button" class="jp-man-chk" role="checkbox" aria-checked="false" data-man="chk"><span class="jp-man-chk-box" aria-hidden="true">✓</span><span>' + x + '</span></button></li>';
+            }).join('') + '</ul>';
+          }).join('');
+      }
+      return '';
+    }
+
+    function put(html) {
+      body.innerHTML = '<div class="jp-man">' + html + '</div>';
+      body.scrollTop = 0;
+      var t = body.querySelector('.jp-man-title, .jp-man-hero h2');
+      if (t) { t.setAttribute('tabindex', '-1'); try { t.focus({ preventScroll: true }); } catch (e) {} }
+    }
+
+    function showIndex() {
+      cur = -1;
+      var seen = getSeen();
+      var firstUnseen = -1, i;
+      for (i = 0; i < N; i++) { if (seen.indexOf(i) < 0) { firstUnseen = i; break; } }
+      var started = seen.length > 0 && firstUnseen !== -1;
+      var h = '<div class="jp-man-hero">' + mandala() +
+        '<h2>' + U.title + '</h2>' +
+        '<p class="jp-man-hero-sub">' + U.heroSub + '</p>' +
+        '<span class="jp-man-pill">' + U.meta + '</span>' +
+        (started
+          ? '<button type="button" class="jp-man-btn" data-man="go:' + firstUnseen + '">' + U['continue'] + ' ›</button>' +
+            '<button type="button" class="jp-man-btn jp-man-btn-ghost" data-man="go:0">' + U.again + '</button>'
+          : '<button type="button" class="jp-man-btn" data-man="go:0">' + U.start + ' ›</button>') +
+        '<p class="jp-man-source">' + U.source + '</p></div>';
+      var lastStage = -1;
+      D.lessons.forEach(function (L, idx) {
+        if (L.stage !== lastStage) {
+          lastStage = L.stage;
+          h += '<div class="jp-man-stage">' + D.stages[L.stage] + '</div>';
+        }
+        var isSeen = seen.indexOf(idx) >= 0;
+        h += '<button type="button" class="jp-man-row' + (isSeen ? ' jp-man-seen' : '') + '" data-man="go:' + idx + '"' + (isSeen ? ' aria-label="' + L.title.replace(/"/g, '') + ' (' + U.seen + ')"' : '') + '>' +
+          '<span class="jp-man-num" aria-hidden="true">' + (isSeen ? '✓' : (idx + 1)) + '</span>' +
+          '<span class="jp-man-row-t">' + L.title + '</span><span class="jp-man-go" aria-hidden="true">›</span></button>';
+      });
+      put(h);
+    }
+
+    function showLesson(i) {
+      cur = i;
+      markSeen(i);
+      var L = D.lessons[i];
+      var pct = Math.round(((i + 1) / N) * 100);
+      var h = '<div class="jp-man-prog"><p class="jp-man-prog-label">' + U.lessonOf.replace('{n}', i + 1).replace('{t}', N) + '</p>' +
+        '<div class="jp-man-bar" role="progressbar" aria-valuemin="1" aria-valuemax="' + N + '" aria-valuenow="' + (i + 1) + '"><i style="width:' + pct + '%"></i></div></div>' +
+        '<p class="jp-man-kicker">' + D.stages[L.stage] + '</p>' +
+        '<h2 class="jp-man-title">' + L.title + '</h2>' + ORN +
+        '<p class="jp-man-lead">' + L.lead + '</p>' +
+        L.blocks.map(render).join('') +
+        '<div class="jp-man-nav">' +
+          '<button type="button" class="jp-man-btn jp-man-btn-ghost" data-man="' + (i === 0 ? 'index' : 'go:' + (i - 1)) + '">‹ ' + (i === 0 ? U.index : U.prev) + '</button>' +
+          '<button type="button" class="jp-man-btn" data-man="go:' + (i + 1) + '">' + U.next + ' ›</button>' +
+        '</div>' +
+        (i === 0 ? '' : '<button type="button" class="jp-man-link" data-man="index">' + U.index + '</button>');
+      put(h);
+    }
+
+    function showDone() {
+      cur = N;
+      var h = '<div class="jp-man-done"><div class="jp-man-hero">' + mandala() +
+        '<h2>' + U.doneTitle + '</h2>' +
+        '<p class="jp-man-hero-sub">' + U.doneText + '</p>' +
+        '<button type="button" class="jp-man-btn jp-man-btn-gold" data-man="close">' + U.practice + '</button>' +
+        '<button type="button" class="jp-man-btn jp-man-btn-ghost" data-man="index">' + U.review + '</button>' +
+        '</div></div>';
+      put(h);
+    }
+
+    function go(i) {
+      if (i < 0) { showIndex(); }
+      else if (i >= N) { markSeen(N - 1); showDone(); }
+      else { showLesson(i); }
+    }
+
+    function onClick(e) {
+      var el = e.target.closest ? e.target.closest('[data-man]') : null;
+      if (!el || !active) return;
+      var a = el.getAttribute('data-man');
+      if (a === 'chk') {
+        el.setAttribute('aria-checked', el.getAttribute('aria-checked') === 'true' ? 'false' : 'true');
+      } else if (a === 'index') {
+        showIndex();
+      } else if (a === 'close') {
+        if (closeFn) closeFn();
+      } else if (a.indexOf('go:') === 0) {
+        go(parseInt(a.slice(3), 10));
+      }
+    }
+
+    return {
+      open: function (bodyEl, backEl, closeCb) {
+        body = bodyEl; backBtn = backEl; closeFn = closeCb;
+        active = true;
+        if (!body.__jpMan) { body.addEventListener('click', onClick); body.__jpMan = true; }
+        backBtn.classList.remove('jp-help-hide');
+        showIndex();
+      },
+      /* Devuelve true si "Volver" se ha usado dentro del tutorial (de lección a índice) */
+      back: function () {
+        if (active && cur !== -1) { showIndex(); return true; }
+        return false;
+      },
+      leave: function () { active = false; cur = -1; }
+    };
+  })();
+  /* JP-MAN:JS:END */
+
   /* Guía de instalación de la versión gratuita (a partir del PDF de instalación freemium) */
   /* Descargar un PDF sin salir de la app: se baja como archivo y se abre la hoja de compartir/guardar
      (iPhone y iPad: "Guardar en Archivos"); si no se puede, se descarga directamente. Nunca se abre a pantalla completa. */
@@ -3665,9 +4073,9 @@ window.DISC_PAGES = {
     if (!actions) return;
     var btn = document.createElement('button');
     btn.type = 'button';
-    btn.className = 'jp-top-btn jp-btn-install';
+    btn.className = 'jp-top-btn jp-btn-tutorial jp-btn-install';
     btn.id = 'jp-btn-install';
-    btn.textContent = 'INSTALAR LA APP';
+    btn.innerHTML = '<span class="jp-btn-label">? TUTORIAL E<br>INSTALACIÓN</span>';
     var share = document.getElementById('jp-btn-share');
     actions.insertBefore(btn, share || null);
 
@@ -3676,26 +4084,62 @@ window.DISC_PAGES = {
       overlay.className = 'jp-help-modal';
       overlay.setAttribute('role', 'dialog');
       overlay.setAttribute('aria-modal', 'true');
-      overlay.setAttribute('aria-label', 'Instalar la app');
+      overlay.setAttribute('aria-label', 'Tutorial e instalación');
       overlay.innerHTML =
         '<div class="jp-help-panel">' +
           '<div class="jp-help-bar">' +
-            '<button type="button" class="jp-help-btn jp-help-close" id="jp-install-close"><span aria-hidden="true">&times;</span> Cerrar</button>' +
+            '<button type="button" class="jp-help-btn jp-help-back jp-help-hide" id="jp-help-back">&#8249; Volver</button>' +
+            '<button type="button" class="jp-help-btn jp-help-close" id="jp-help-close"><span aria-hidden="true">&times;</span> Cerrar</button>' +
           '</div>' +
-          '<div class="jp-help-scroll" id="jp-install-body"></div>' +
+          '<div class="jp-help-scroll" id="jp-help-body"></div>' +
         '</div>';
       document.body.appendChild(overlay);
       var prevOverflow = document.body.style.overflow;
       document.body.style.overflow = 'hidden';
-      var body = overlay.querySelector('#jp-install-body');
+      var body = overlay.querySelector('#jp-help-body');
+      var backBtn = overlay.querySelector('#jp-help-back');
+      var closeBtn = overlay.querySelector('#jp-help-close');
 
       function detectOS() {
         var ua = navigator.userAgent || '';
         var iPadOS = navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1;
         return (/iPhone|iPad|iPod/i.test(ua) || iPadOS) ? 'ios' : 'android';
       }
+      function showHome() {
+        JP_MAN.leave();
+        backBtn.classList.add('jp-help-hide');
+        body.innerHTML =
+          '<h2 class="jp-help-title">Tutorial e instalación</h2>' +
+          '<p class="jp-help-sub">Elige lo que quieres ver.</p>' +
+          '<div class="jp-help-cards">' +
+            '<button type="button" class="jp-help-card jp-help-card-mantra" data-help="mantras">' +
+            '<span class="jp-help-card-icon"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#8A2A55" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4.5c2 2.2 3 4.4 3 6.8 0 2.1-1.2 3.6-3 4.7-1.8-1.1-3-2.6-3-4.7 0-2.4 1-4.6 3-6.8z"/><path d="M9.3 8.4C6.6 8.4 4.4 9.8 3 12.2c.9 3 3.3 4.7 6.2 4.7"/><path d="M14.7 8.4c2.7 0 4.9 1.4 6.3 3.8-.9 3-3.3 4.7-6.2 4.7"/><path d="M5 19.5h14"/></svg></span>' +
+            '<span class="jp-help-card-text">' +
+              '<span class="jp-help-card-name">Iniciación a los mantras</span>' +
+              '<span class="jp-help-card-desc">Qué son, cómo recitarlos y cómo usar el mala. 11 lecciones breves.</span>' +
+            '</span>' +
+            '<span class="jp-help-card-go" aria-hidden="true">&#8250;</span>' +
+          '</button>' +
+          
+            '<button type="button" class="jp-help-card jp-help-card-install" data-help="install">' +
+              '<span class="jp-help-card-icon">' +
+                '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#4C1D95" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M12 8v7M9 12.5l3 3 3-3"/></svg>' +
+              '</span>' +
+              '<span class="jp-help-card-text">' +
+                '<span class="jp-help-card-name">Instalar la app</span>' +
+                '<span class="jp-help-card-desc">Ponla en tu pantalla de inicio, en iPhone, iPad o Android.</span>' +
+              '</span>' +
+              '<span class="jp-help-card-go" aria-hidden="true">&#8250;</span>' +
+            '</button>' +
+          '</div>';
+        body.scrollTop = 0;
+      }
+      function showMantras() {
+        JP_MAN.open(body, backBtn, closeHelp);
+      }
       function showInstall(os) {
         var data = INSTALL_GUIDE[os];
+        backBtn.classList.remove('jp-help-hide');
         var stepsHtml = data.pages.map(function (pg) {
           return '<figure class="jp-help-step"><img src="' + pg.img + '" alt="' + pg.alt + '" loading="lazy" decoding="async" /></figure>';
         }).join('');
@@ -3711,23 +4155,31 @@ window.DISC_PAGES = {
           '<button type="button" class="jp-help-pdf" data-pdf="' + INSTALL_PDF_URL + '">Descargar el PDF completo</button>';
         body.scrollTop = 0;
       }
-      function closeInstall() {
+      function closeHelp() {
+        JP_MAN.leave();
         document.removeEventListener('keydown', onKey);
         document.body.style.overflow = prevOverflow;
         overlay.remove();
       }
-      function onKey(e) { if (e.key === 'Escape') closeInstall(); }
+      function onKey(e) { if (e.key === 'Escape') closeHelp(); }
       body.addEventListener('click', function (e) {
+        var card = e.target.closest('[data-help]');
+        if (card) {
+          if (card.getAttribute('data-help') === 'mantras') showMantras();
+          else showInstall(detectOS());
+          return;
+        }
         var pdfBtn = e.target.closest('[data-pdf]');
-      if (pdfBtn) { jpSavePdf(pdfBtn.getAttribute('data-pdf'), pdfBtn); return; }
-      var osBtn = e.target.closest('[data-os]');
+        if (pdfBtn) { jpSavePdf(pdfBtn.getAttribute('data-pdf'), pdfBtn); return; }
+        var osBtn = e.target.closest('[data-os]');
         if (osBtn) showInstall(osBtn.getAttribute('data-os'));
       });
-      overlay.querySelector('#jp-install-close').addEventListener('click', closeInstall);
-      overlay.addEventListener('click', function (e) { if (e.target === overlay) closeInstall(); });
+      backBtn.addEventListener('click', function () { if (JP_MAN.back()) return; showHome(); });
+      closeBtn.addEventListener('click', closeHelp);
+      overlay.addEventListener('click', function (e) { if (e.target === overlay) closeHelp(); });
       document.addEventListener('keydown', onKey);
-      showInstall(detectOS());
-      overlay.querySelector('#jp-install-close').focus();
+      showHome();
+      closeBtn.focus();
     });
   })();
 
