@@ -1078,6 +1078,18 @@ window.DISC_PAGES = {
     height: auto;
     margin: 0 auto 10px;
   }
+  .jp-ritual-upsell {
+    margin: 18px 16px 0;
+    padding: 24px 20px;
+    text-align: center;
+    border-radius: 18px;
+    background: linear-gradient(160deg, #2A1B3D, #1B1230);
+    border: 1px solid rgba(201, 162, 75, 0.55);
+    color: #F3E9FF;
+  }
+  .jp-ritual-upsell-title { margin: 0 0 8px; font-size: 21px; font-weight: 700; color: #E9C86A; }
+  .jp-ritual-upsell-text { margin: 0 0 18px; font-size: 17px; line-height: 1.5; }
+  .jp-ritual-upsell .jp-upgrade-btn { display: inline-block; }
   .jp-ritual-sub {
     display: block;
     margin-top: 2px;
@@ -2736,7 +2748,7 @@ window.DISC_PAGES = {
     apply();
   }
 
-  var taanpuraAudio = new Audio() /* base bloqueada en la gratuita; en Premium: audio1/taanpura1.mp3 */;
+  var taanpuraAudio = new Audio('audio1/taanpura1.mp3');
   var btnTaanpuraPlay = document.getElementById('jp-taanpura-play');
   var btnTaanpuraPause = document.getElementById('jp-taanpura-pause');
   var btnTaanpuraStop = document.getElementById('jp-taanpura-stop');
@@ -3072,6 +3084,8 @@ window.DISC_PAGES = {
 
   function openRitual(slug) {
     var n = RITUAL_PAGES[slug] || 0;
+    var previewN = (typeof FREE !== 'undefined' && FREE.ritualPreview && FREE.ritualPreview[slug]) || 0;
+    if (previewN) n = Math.min(n, previewN);
     var imgs = '';
     for (var i = 1; i <= n; i++) {
       var num = (i < 10 ? '0' : '') + i;
@@ -3081,7 +3095,11 @@ window.DISC_PAGES = {
     overlay.className = 'jp-ritual-modal';
     overlay.innerHTML =
       '<button class="jp-modal-close" aria-label="Cerrar"><span class="jp-modal-close-x">&times;</span> Cerrar</button>' +
-      '<div class="jp-ritual-pages">' + imgs + '</div>';
+      '<div class="jp-ritual-pages">' + imgs +
+      (previewN ? '<div class="jp-ritual-upsell"><p class="jp-ritual-upsell-title">Esto es solo el comienzo</p>' +
+        '<p class="jp-ritual-upsell-text">Con la versi&oacute;n Premium tienes el ritual completo de Ganesha y los de Shiva, Lakshmi, Hanuman, Durga y Kali.</p>' +
+        '<a class="jp-upgrade-btn" href="' + FREE.upgradeUrl + '" target="_blank" rel="noopener">Adquirir la versi&oacute;n Premium</a></div>' : '') +
+      '</div>';
     document.body.appendChild(overlay);
     overlay.querySelector('.jp-modal-close').addEventListener('click', function(e) {
       e.stopPropagation();
@@ -3770,7 +3788,8 @@ window.DISC_PAGES = {
   var FREE = {
     upgradeUrl: 'https://payhip.com/b/VjqJ4',
     deidades: ['Ganesha', 'Shiva'],
-    malas: ['Rudraksha'],
+    malas: ['Rudraksha', 'Sphatik'],
+    ritualPreview: { ganesha: 3 },
     fondos: ['none', 'durga1', 'veera'],
     previewDir: 'video/preview/'
   };
@@ -3778,7 +3797,7 @@ window.DISC_PAGES = {
   var UPGRADE_TEXTS = {
     deidad:  { title: 'Desbloquea las 10 deidades', text: 'Con la versión Premium accedes a todas las deidades y sus imágenes, no solo a Ganesha y Shiva.' },
     planeta: { title: 'Desbloquea los 9 planetas', text: 'Con la versión Premium trabajas con los 9 grahas, de Surya a Ketu: su imagen, su mantra y su mala de piedra preciosa.' },
-    mala:    { title: 'Desbloquea las 17 malas', text: 'Con la versión Premium accedes a las 8 malas de deidades y a las 9 malas de piedras preciosas de los planetas, no solo a Rudraksha.' },
+    mala:    { title: 'Desbloquea las 17 malas', text: 'Con la versión Premium accedes a las 8 malas de deidades y a las 9 malas de piedras preciosas de los planetas, no solo a Rudraksha y Sphatik.' },
     audio:   { title: 'Desbloquea las bases de fondo', text: 'Con la versión Premium accedes a los 3 audios de acompañamiento (Taanpura, Paz profunda y Cosmos) para practicar con ellos de fondo.' },
     fondo:   { title: 'Desbloquea todos los fondos', text: 'Con la versión Premium pones cualquiera de los fondos en vídeo mientras practicas. Así es este:' },
     ritual:  { title: 'Desbloquea los rituales', text: 'Con la versión Premium accedes a los rituales ilustrados de Ganesha, Shiva, Lakshmi, Hanuman, Durga y Kali.' },
@@ -3806,9 +3825,14 @@ window.DISC_PAGES = {
     if (FREE.fondos.indexOf(k) === -1) freeLock(it, 'fondo', k);
   });
   ritualesMenu.querySelectorAll('.jp-ritual-item').forEach(function (it) {
-    freeLock(it, 'ritual');
+    if (FREE.ritualPreview[it.getAttribute('data-ritual')]) {
+      var sub = it.querySelector('.jp-ritual-sub');
+      if (sub) sub.textContent = 'Vista previa gratuita';
+    } else {
+      freeLock(it, 'ritual');
+    }
   });
-  ['jp-taanpura-play', 'jp-paz-play', 'jp-cosmos-play'].forEach(function (id) {
+  ['jp-paz-play', 'jp-cosmos-play'].forEach(function (id) {
     var b = document.getElementById(id);
     if (!b) return;
     b.innerHTML = '&#128274; Play';

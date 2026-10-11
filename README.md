@@ -2,9 +2,9 @@
 
 Versión gratuita de Japa-Móvil. Se genera a partir de la versión Premium (repo `japa-movil`) con estos bloqueos:
 
-**Abierto:** deidades Ganesha y Shiva · mala Rudraksha · todos los mantras (menos los de los planetas) · fondos en vídeo de Durga (Simhavahini I) y Hanuman (Veera) · tienda · compartir app · guía de instalación (botón "Instalar la app", con el PDF `pdf/Instalacion-Japa-Movil-Lite.pdf`).
+**Abierto:** deidades Ganesha y Shiva · mala Rudraksha y Sphatik (cuarzo) · base de audio Taanpura · vista previa del ritual de Ganesha (3 primeras páginas, `FREE.ritualPreview`) · todos los mantras (menos los de los planetas) · fondos en vídeo de Durga (Simhavahini I) y Hanuman (Veera) · tienda · compartir app · guía de instalación (botón "Instalar la app", con el PDF `pdf/Instalacion-Japa-Movil-Lite.pdf`).
 
-**Bloqueado (con candado y aviso para adquirir Premium):** resto de deidades, los 9 planetas, resto de malas, bases de audio, rituales, mantras de planetas y resto de fondos. En los fondos, el aviso incluye un mini reproductor con una vista previa corta (`video/preview/`).
+**Bloqueado (aviso para adquirir Premium):** resto de deidades, los 9 planetas, resto de malas, bases Paz profunda y Cosmos, resto de rituales, mantras de planetas y resto de fondos. En los fondos, el aviso incluye un mini reproductor con una vista previa corta (`video/preview/`).
 
 Enlace de compra: https://payhip.com/b/VjqJ4
 
