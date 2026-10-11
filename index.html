@@ -1666,6 +1666,8 @@ window.DISC_PAGES = {
     font-size: 12px;
     margin-right: 7px;
   }
+  /* Fondos en vídeo bloqueados: solo en gris, sin candado (para que se animen a pulsar y ver la vista previa) */
+  .jp-fondo-item.jp-locked::before { content: none; display: none; }
   .jp-audio-btn.jp-locked { opacity: 0.75; }
   /* Botón de play de los mantras de planetas: el candado va por encima, aunque la app cambie su icono */
   .jp-mantra-play.jp-locked-play { position: relative; }
