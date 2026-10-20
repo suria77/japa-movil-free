@@ -20,7 +20,33 @@ IMG_EXT = {'.png', '.webp', '.jpg', '.jpeg', '.svg', '.gif', '.ico', '.avif'}
 FONT_EXT = {'.ttf', '.otf', '.woff', '.woff2'}
 AUDIO_EXT = {'.mp3', '.m4a', '.wav', '.ogg', '.aac'}
 
+# Interfaz (core): solo se guardan los archivos que la app usa de verdad. Así no se descargan en
+# segundo plano imágenes o tipografías que no aparecen en index.html (antes ~10 MB de más).
+# Se considera "usado" si su nombre aparece en index.html / offline.js / manifest, o si su nombre
+# sin el número final aparece (p. ej. 'img/guide-en-' + n  ->  guide-en-01.webp ... guide-en-16.webp).
+import re
+SRC = ''
+for name in ('index.html', 'offline.js', 'manifest.webmanifest'):
+    try:
+        with open(os.path.join(ROOT, name), encoding='utf-8') as fh:
+            SRC += fh.read()
+    except OSError:
+        pass
+
+def used_in_app(rel):
+    # Ruta completa (con su carpeta), sin que sea parte de otra ruta: 'budha.png' no cuenta
+    # como usado solo porque exista 'img_deitades_planetas/budha.png'.
+    def found(text):
+        return re.search(r'(?<![\w/.-])' + re.escape(text), SRC) is not None
+    if found(rel):
+        return True
+    d, base = os.path.split(rel)
+    name = os.path.splitext(base)[0]
+    stem = re.sub(r'\d+$', '', name)
+    return stem != name and len(stem) >= 4 and found((d + '/' if d else '') + stem)
+
 core, images, audio = [], [], []
+skipped = []
 core_sz, images_sz, audio_sz = [], [], []
 sizes = {'core': 0, 'images': 0, 'audio': 0}
 
@@ -36,6 +62,8 @@ for dirpath, dirnames, filenames in os.walk(ROOT):
         if ext in AUDIO_EXT:
             audio.append(url); audio_sz.append(size); sizes['audio'] += size
         elif ext in FONT_EXT or (ext in IMG_EXT and (top == '' or top in CORE_DIRS)):
+            if not used_in_app(rel):
+                skipped.append(rel); continue
             core.append(url); core_sz.append(size); sizes['core'] += size
         elif ext in IMG_EXT:
             images.append(url); images_sz.append(size); sizes['images'] += size
@@ -51,3 +79,5 @@ with open(out, 'w', encoding='utf-8') as f:
     f.write('self.JP_OFFLINE = ' + json.dumps(cfg, ensure_ascii=False, separators=(',', ':')) + ';\n')
 print('core %d (%.1f MB) · images %d (%.1f MB) · audio %d (%.1f MB)' % (
     len(core), sizes['core'] / 1e6, len(images), sizes['images'] / 1e6, len(audio), sizes['audio'] / 1e6))
+if skipped:
+    print('No se guardan (la app no los usa): %d archivos' % len(skipped))
