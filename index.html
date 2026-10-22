@@ -2226,6 +2226,8 @@ window.DISC_PAGES = {
       '<img class="jp-bottom-logo" src="img/IMG_0006.png" alt="Logo" />' +
       '<div class="jp-bottom-actions" id="jp-bottom-actions">' +
         '<button type="button" class="jp-top-btn jp-btn-share" id="jp-btn-share">COMPARTIR APP</button>' +
+        '<button type="button" class="jp-legal-link" id="jp-btn-legal">Aviso legal y contacto</button>' +
+        '<button type="button" class="jp-legal-link" id="jp-btn-privacy">Política de privacidad</button>' +
       '</div>' +
       '<div class="jp-cosmos-bg" aria-hidden="true">' +
         '<span class="jp-nebula"></span>' +
@@ -4434,5 +4436,61 @@ if ('serviceWorker' in navigator) {
 </script>
 <script src="offline-files.js"></script>
 <script src="offline.js"></script>
+<style>
+  /* --- Enlaces legales: casi invisibles --- */
+  .jp-legal-link { background: none; border: 0; padding: 8px 6px; min-height: 36px; font-family: inherit; font-size: 11px; letter-spacing: 0.03em; color: #A78BFA; opacity: 0.5; cursor: pointer; transition: opacity .2s; }
+  .jp-legal-link:hover, .jp-legal-link:focus-visible { opacity: 0.95; text-decoration: underline; text-underline-offset: 3px; }
+  .jp-bottom-actions .jp-legal-link { align-self: flex-end; padding: 3px 4px 0; min-height: 0; font-size: 10px; }
+  .jp-bottom-actions .jp-btn-share + .jp-legal-link { margin-top: 26px; }
+  .jp-legal-text { font-size: 16px; line-height: 1.65; color: #3a2760; }
+  .jp-legal-text p { margin: 0 0 12px; }
+  .jp-legal-text h3 { margin: 22px 0 6px; font-size: 18px; font-weight: 800; color: #2B1050; }
+  .jp-legal-data { list-style: none; margin: 0 0 14px; padding: 14px 16px; background: #fff; border: 1px solid rgba(107, 33, 168, 0.2); border-radius: 14px; }
+  .jp-legal-data li { padding: 4px 0; }
+</style>
+<script>
+/* Aviso legal y privacidad (LSSI-CE art. 10, RGPD) */
+(function () {
+  var CONTACTO = '<a href="mailto:dharmaeterno@dharmaeterno.com">dharmaeterno@dharmaeterno.com</a>';
+  var DOCS = {notice:{title:'Aviso legal y contacto',sub:'Datos del titular de esta aplicación.',html:'<p>En cumplimiento del artículo 10 de la Ley 34/2002, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI-CE), se informa de que el titular de la aplicación «Japa-Móvil» (Dharma Eterno) es:</p><ul class="jp-legal-data"><li><strong>Titular:</strong> Carlos Pombo Gómez</li><li><strong>NIF:</strong> 46853152J</li><li><strong>Domicilio:</strong> Calle los Yébenes 139, 2D, 28047 Madrid</li><li><strong>Correo electrónico de contacto:</strong> ' + CONTACTO + '</li></ul><p>Los textos, audios, imágenes y demás contenidos de la aplicación son obra del titular y no pueden copiarse, reproducirse ni distribuirse sin su autorización.</p><p>Para cualquier duda o consulta, escribe al correo de contacto.</p>'},privacy:{title:'Política de privacidad',sub:'Última actualización: 22 de octubre de 2026.',html:'<h3>Responsable</h3><p>Carlos Pombo Gómez (Dharma Eterno), NIF 46853152J, Calle los Yébenes 139, 2D, 28047 Madrid. Contacto: ' + CONTACTO + '.</p><h3>Qué datos tratamos</h3><p>Esta versión gratuita <strong>no te pide registro, correo ni ningún dato personal</strong>, y no los recoge. Tus ajustes se guardan solo en tu dispositivo (almacenamiento local del navegador) y no se envían a ningún servidor nuestro.</p><h3>Micrófono</h3><p>Si usas el conteo por voz o la función de grabar y repetir, el navegador te pide permiso. El sonido se analiza <strong>en tu dispositivo</strong> y <strong>nunca se envía</strong> a nuestros servidores.</p><h3>Cookies y terceros</h3><p>No usamos cookies de analítica, publicidad ni seguimiento, y la aplicación no carga fuentes ni scripts de terceros.</p><h3>Alojamiento</h3><p>La aplicación está alojada en <strong>Cloudflare</strong>, que puede registrar datos técnicos de la conexión (como la dirección IP) por motivos de seguridad y funcionamiento. Puede tratarlos fuera del Espacio Económico Europeo con las garantías previstas en el RGPD.</p><h3>Enlaces externos</h3><p>La aplicación enlaza con la tienda en <strong>Payhip</strong>, con Amazon y con otras páginas de Dharma Eterno. Al salir de la aplicación, se aplica la política de privacidad de cada sitio.</p><h3>Tus derechos</h3><p>Puedes solicitar el acceso, la rectificación, la supresión, la limitación, la portabilidad y la oposición escribiendo a ' + CONTACTO + '. Si consideras que no se han respetado tus derechos, puedes reclamar ante la Agencia Española de Protección de Datos (<a href="https://www.aepd.es" target="_blank" rel="noopener">www.aepd.es</a>).</p>'}};
+  var CLOSE = 'Cerrar';
+  function open(kind) {
+    if (document.getElementById('jp-legal-modal')) return;
+    var doc = DOCS[kind] || DOCS.notice;
+    var overlay = document.createElement('div');
+    overlay.className = 'jp-help-modal';
+    overlay.id = 'jp-legal-modal';
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-modal', 'true');
+    overlay.setAttribute('aria-label', doc.title);
+    overlay.innerHTML =
+      '<div class="jp-help-panel">' +
+        '<div class="jp-help-bar">' +
+          '<button type="button" class="jp-help-btn jp-help-close" id="jp-legal-close"><span aria-hidden="true">&times;</span> ' + CLOSE + '</button>' +
+        '</div>' +
+        '<div class="jp-help-scroll">' +
+          '<h2 class="jp-help-title">' + doc.title + '</h2>' +
+          '<p class="jp-help-sub">' + doc.sub + '</p>' +
+          '<div class="jp-legal-text">' + doc.html + '</div>' +
+        '</div>' +
+      '</div>';
+    document.body.appendChild(overlay);
+    var prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    var btn = overlay.querySelector('#jp-legal-close');
+    function close() { document.removeEventListener('keydown', onKey); document.body.style.overflow = prev; overlay.remove(); }
+    function onKey(e) { if (e.key === 'Escape') close(); }
+    btn.addEventListener('click', close);
+    overlay.addEventListener('click', function (e) { if (e.target === overlay) close(); });
+    document.addEventListener('keydown', onKey);
+    btn.focus();
+  }
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest ? e.target.closest('#jp-btn-legal, #jp-btn-privacy') : null;
+    if (!t) return;
+    open(t.id === 'jp-btn-privacy' ? 'privacy' : 'notice');
+  });
+})();
+</script>
 </body>
 </html>

@@ -13,7 +13,7 @@ import json, os, sys
 from urllib.parse import quote
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-VERSION = 'v2'                      # súbelo (v3, v4...) para obligar a todos los móviles a bajar la interfaz de nuevo
+VERSION = 'v3'                      # súbelo (v3, v4...) para obligar a todos los móviles a bajar la interfaz de nuevo
 CORE_DIRS = {'img', 'fonts', 'img_deitades_planetas'}
 SKIP_DIRS = {'.git', '.github', '.claude', 'functions', 'video', 'pdf', 'tools', 'node_modules'}
 IMG_EXT = {'.png', '.webp', '.jpg', '.jpeg', '.svg', '.gif', '.ico', '.avif'}
